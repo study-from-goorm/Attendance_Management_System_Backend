@@ -13,6 +13,7 @@ SET foreign_key_checks = 1;
 CREATE TABLE admins (
     admin_id VARCHAR(20) NOT NULL,
     admin_pw VARCHAR(255) NOT NULL,
+    admin_role VARCHAR(20) NOT NULL,
     PRIMARY KEY (admin_id)
 );
 
@@ -43,7 +44,7 @@ CREATE TABLE attendances (
 
 
 INSERT INTO admins
-VALUES ('goorm', '1234');
+VALUES ('goorm', '$2a$10$XTXG2rBJFnON.cSb/NAuTOVq03D0GhIue/Fgw8hwT84yRSVoUULpW', 'ROLE_ADMIN');
 
 INSERT INTO players (player_name, player_pw, player_email, player_course)
 VALUES ('가', '123456','가@goorm.io',  '풀스택 3회차');
