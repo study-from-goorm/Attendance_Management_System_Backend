@@ -3,14 +3,17 @@ package goorm.attendancebook.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 
-//@Table("players")
+@Table(name="players")
 @Data
 @Entity
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long playerId;
+    private int playerId;
+
+    @Column(length = 255)
+    private String playerPw;
 
     @Column(length = 20)
     private String playerName;
@@ -24,8 +27,9 @@ public class Player {
     public Player() {
     }
 
-    public Player(Long playerId, String playerName, String playerEmail, String playerCourse) {
+    public Player(int playerId, String playerPw, String playerName, String playerEmail, String playerCourse) {
         this.playerId = playerId;
+        this.playerPw = playerPw;
         this.playerName = playerName;
         this.playerEmail = playerEmail;
         this.playerCourse = playerCourse;
