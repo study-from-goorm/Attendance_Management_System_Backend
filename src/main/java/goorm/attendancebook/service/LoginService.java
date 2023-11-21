@@ -1,7 +1,7 @@
 package goorm.attendancebook.service;
 
-import goorm.attendancebook.domain.AdminAccount;
-import goorm.attendancebook.domain.Player;
+import goorm.attendancebook.domain.dao.AdminAccount;
+import goorm.attendancebook.domain.dao.Player;
 import goorm.attendancebook.repository.AdminRepository;
 import goorm.attendancebook.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;

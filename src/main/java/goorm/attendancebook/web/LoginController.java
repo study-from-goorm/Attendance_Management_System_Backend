@@ -1,13 +1,10 @@
 package goorm.attendancebook.web;
 
-import goorm.attendancebook.domain.Player;
 import goorm.attendancebook.repository.AdminRepository;
 import goorm.attendancebook.repository.PlayerRepository;
 import goorm.attendancebook.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,27 +1,28 @@
-package goorm.attendancebook.domain;
+package goorm.attendancebook.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Table(name="players")
 @Data
 @Entity
+@Table(name="players")
 public class Player {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "player_id")
     private int playerId;
 
-    @Column(length = 255)
+    @Column(name = "player_pw", length = 255, nullable = false)
     private String playerPw;
 
-    @Column(length = 20)
+    @Column(name = "player_name", length = 20, nullable = false)
     private String playerName;
 
-    @Column(length = 100)
-    private String playerEmail;
+    @Column(name = "player_email", length = 100)
+    private String playerEmail = "youremail@groom.io";
 
-    @Column(length = 20)
+    @Column(name = "player_course", length = 20, nullable = false)
     private String playerCourse;
 
     public Player() {
@@ -31,7 +32,7 @@ public class Player {
         this.playerId = playerId;
         this.playerPw = playerPw;
         this.playerName = playerName;
-        this.playerEmail = playerEmail;
+        this.playerEmail = (playerEmail != null) ? playerEmail : "youremail@groom.io";
         this.playerCourse = playerCourse;
     }
 

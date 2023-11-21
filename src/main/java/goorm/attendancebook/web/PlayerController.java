@@ -1,6 +1,6 @@
 package goorm.attendancebook.web;
 
-import goorm.attendancebook.domain.Player;
+import goorm.attendancebook.domain.dao.Player;
 import goorm.attendancebook.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
 package goorm.attendancebook.repository;
 
-import goorm.attendancebook.domain.AdminAccount;
+import goorm.attendancebook.domain.dao.AdminAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
