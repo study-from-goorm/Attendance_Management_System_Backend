@@ -1,5 +1,9 @@
 package goorm.attendancebook.web;
 
+import goorm.attendancebook.domain.dto.AdminLoginDto;
+import goorm.attendancebook.domain.dto.AdminLoginResponseDto;
+import goorm.attendancebook.domain.dto.PlayerLoginDto;
+import goorm.attendancebook.domain.dto.PlayerLoginResponseDto;
 import goorm.attendancebook.repository.AdminRepository;
 import goorm.attendancebook.repository.PlayerRepository;
 import goorm.attendancebook.service.LoginService;
@@ -16,12 +20,13 @@ public class LoginController {
 
 
     @PostMapping("/admin")
-    public boolean loginByAdminId(String loginId, String loginPw) {
-        return loginService.adminLoginService(loginId, loginPw);
+    public AdminLoginResponseDto<String> loginByAdminId(@RequestBody AdminLoginDto adminLoginDto) {
+        return loginService.adminLoginService(adminLoginDto.getLoginId(), adminLoginDto.getLoginPw());
     }
 
+
     @PostMapping("/player")
-    public boolean loginByPlayerName(String loginName, String loginPw) {
-        return loginService.playerLoginService(loginName, loginPw);
+    public PlayerLoginResponseDto<String> loginByPlayerName(@RequestBody PlayerLoginDto playerLoginDto) {
+        return loginService.playerLoginService(playerLoginDto.getLoginEmail(), playerLoginDto.getLoginPw());
     }
 }
