@@ -15,12 +15,15 @@ public class AdminAccount {
     @Column(name = "admin_pw", length = 255, nullable = false)
     private String adminPw;
 
+    @Column(name = "admin_role", length = 20, nullable = false)
+    private String adminRole;
     public AdminAccount() {
     }
 
-    public AdminAccount(String adminId, String adminPw) {
+    public AdminAccount(String adminId, String adminPw, String adminRole) {
         this.adminId = adminId;
         this.adminPw = adminPw;
+        this.adminRole = adminRole;
     }
 
 }
