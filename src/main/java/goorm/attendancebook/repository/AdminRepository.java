@@ -1,4 +1,11 @@
 package goorm.attendancebook.repository;
 
-public interface AdminRepository {
+import goorm.attendancebook.domain.dao.AdminAccount;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.Optional;
+
+public interface AdminRepository extends JpaRepository<AdminAccount, Long> {
+
+    Optional<AdminAccount> findByAdminId(String Id);
 }
