@@ -21,17 +21,17 @@ public class PlayerService {
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
-
-    public Optional<Player> getPlayerById(Long id) {
-        return playerRepository.findById(id);
-    }
+//
+//    public Optional<Player> getPlayerById(Long id) {
+//        return playerRepository.findById(id);
+//    }
 
     public Player savePlayer(Player player) {
         return playerRepository.save(player);
     }
-
-    public void deletePlayer(Long id) {
-        playerRepository.deleteById(id);
-    }
+//
+//    public void deletePlayer(Long id) {
+//        playerRepository.deleteById(id);
+//    }
 
 }

@@ -4,9 +4,15 @@ import goorm.attendancebook.domain.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface PlayerRepository extends JpaRepository<Player, Long> {
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
-    List<Player> findByPlayerId(Long playerId);
+    List<Player> findByPlayerId(int playerId);
 
+    List<Player> findByPlayerCourse(String course);
+
+    List<Player> findPlayerByPlayerNameAndPlayerEmailAndPlayerCourse(String playerName, String playerEmail, String playerCourse);
+
+    Optional<Player> findByPlayerName(String playerName);
 }
