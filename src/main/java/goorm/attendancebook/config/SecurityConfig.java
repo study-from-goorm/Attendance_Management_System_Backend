@@ -1,4 +1,4 @@
-package goorm.attendancebook.domain.config;
+package goorm.attendancebook.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

@@ -14,5 +14,5 @@ public class PlayerLoginDto {
     @NotBlank
     private String loginEmail;
     @NotBlank
-    private String loginPw;
+    private String loginBirth;
 }

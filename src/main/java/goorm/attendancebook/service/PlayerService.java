@@ -100,7 +100,7 @@ public class PlayerService {
                 // Attendance 엔티티를 업데이트 합니다.
                 attendance.setSessionStatus(dto.getAttendance());
 
-                // 변경된 Attendance 정보 저장
+                // 변경된 Attendance 정보 저장가
                 playerRepository.save(player);
             }
             return ResponseDto.setSuccess("Attendance updated successfully", null);

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AdminLoginDto {
     @NotBlank
-    private String loginPw;
-    @NotBlank
     private String loginId;
+    @NotBlank
+    private String loginPw;
 }

@@ -1,4 +1,4 @@
-package goorm.attendancebook.domain.config;
+package goorm.attendancebook.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
