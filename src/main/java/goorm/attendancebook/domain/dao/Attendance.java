@@ -3,6 +3,7 @@ package goorm.attendancebook.domain.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -60,6 +61,19 @@ public class Attendance {
         this.sessionSix = sessionSix;
         this.sessionSeven = sessionSeven;
         this.sessionEight = sessionEight;
+    }
+    public void setSessionStatus(List<Integer> statuses) {
+        if (statuses == null || statuses.size() != 8) {
+            throw new IllegalArgumentException("Statuses must contain 8 elements.");
+        }
+        this.sessionOne = statuses.get(0);
+        this.sessionTwo = statuses.get(1);
+        this.sessionThree = statuses.get(2);
+        this.sessionFour = statuses.get(3);
+        this.sessionFive = statuses.get(4);
+        this.sessionSix = statuses.get(5);
+        this.sessionSeven = statuses.get(6);
+        this.sessionEight = statuses.get(7);
     }
 
 }

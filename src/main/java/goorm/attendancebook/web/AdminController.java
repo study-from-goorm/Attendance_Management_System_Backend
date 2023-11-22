@@ -2,6 +2,7 @@ package goorm.attendancebook.web;
 
 
 import goorm.attendancebook.domain.dao.Player;
+import goorm.attendancebook.domain.dto.CourseSessionDto;
 import goorm.attendancebook.domain.dto.PlayerSessionDto;
 import goorm.attendancebook.domain.dto.ResponseDto;
 import goorm.attendancebook.repository.AdminRepository;
@@ -30,13 +31,27 @@ public class AdminController {
     }
 
     @GetMapping("/manage/{playerCourse}/{date}")
-    public ResponseDto<List<PlayerSessionDto>> getSearchList(
+    public CourseSessionDto getSearchList(
             @PathVariable String playerCourse,
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
 
         return playerService.getAllPlayerSessionsByCourseAndDate(playerCourse, date);
     }
 
+    @PostMapping("/manage/{playerCourse}/{date}")
+    public ResponseDto<?> updatePlayerAttendance(
+            @PathVariable String playerCourse,
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestBody CourseSessionDto courseSessionDto) {
+        try {
+            // 로직 구현: courseSessionDto에 담긴 정보로 attendance를 업데이트
+            playerService.updatePlayerSessions(courseSessionDto);
+            return ResponseDto.setSuccess("Attendance updated successfully", null);
+        } catch (Exception e) {
+            // 에러 처리
+            return ResponseDto.setFailed("Failed to update attendance");
+        }
+    }
 
 
 }

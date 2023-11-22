@@ -23,6 +23,14 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
             "WHERE p.playerCourse = :playerCourse AND a.attendanceDate = :date")
     List<Object[]> findSessionsByCourseAndDate(@Param("playerCourse") String playerCourse, @Param("date") LocalDate date);
 
+    @Query(value = "SELECT p.*, a.* " +
+            "FROM players p " +
+            "JOIN attendances a ON p.player_id = a.player_id " +
+            "WHERE p.player_id = :playerId AND a.attendance_date = :date",
+            nativeQuery = true)
+    Optional<Player> findByPlayerIdAndDate(@Param("playerId") int playerId, @Param("date") LocalDate date);
+
+
     List<Player> findByPlayerCourse(String course);
 
     List<Player> findPlayerByPlayerNameAndPlayerEmailAndPlayerCourse(String playerName, String playerEmail, String playerCourse);

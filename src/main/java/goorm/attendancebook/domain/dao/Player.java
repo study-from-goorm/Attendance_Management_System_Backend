@@ -3,6 +3,7 @@ package goorm.attendancebook.domain.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -29,6 +30,16 @@ public class Player {
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
     private List<Attendance> attendances;
+
+    public void updateAttendance(List<Integer> newAttendance) {
+        // 특정 날짜의 Attendance 객체를 찾아서 업데이트하는 로직
+        Attendance attendance = this.attendances.stream()
+                .filter(a -> a.getAttendanceDate().equals(LocalDate.now())) // 또는 적절한 날짜 파라미터 사용
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Attendance record not found."));
+
+        attendance.setSessionStatus(newAttendance);
+    }
 
     public Player() {
     }
