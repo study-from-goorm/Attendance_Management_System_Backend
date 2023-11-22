@@ -1,13 +1,12 @@
 package goorm.attendancebook.web;
 
-import goorm.attendancebook.domain.dao.Player;
-import goorm.attendancebook.repository.PlayerRepository;
+import goorm.attendancebook.domain.dto.SearchAttendanceDetail;
+import goorm.attendancebook.domain.dto.SearchAttendanceRequestDto;
+import goorm.attendancebook.domain.dto.SearchAttendanceResponseDto;
 import goorm.attendancebook.service.PlayerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,11 +14,15 @@ import java.util.Optional;
 public class PlayerController {
 
     private final PlayerService playerService;
-    private final PlayerRepository playerRepository;
 
-    @GetMapping("/findAll")
-    public List<Player> findAll() {
-        return playerRepository.findAll();
+    @GetMapping("/result")
+    public SearchAttendanceResponseDto searchPlayer(@RequestBody SearchAttendanceRequestDto request) {
+        return playerService.searchPlayer(request);
+    }
+
+    @GetMapping("result/detail")
+    public SearchAttendanceDetail searchAttendanceDetail(@RequestParam int playerId, String date){
+        return playerService.searchAttendanceDetail(playerId, date);
     }
 
 }

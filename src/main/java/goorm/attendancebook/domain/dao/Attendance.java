@@ -44,10 +44,13 @@ public class Attendance {
     @Column(name = "session_eight", columnDefinition = "int default 0")
     private int sessionEight = 0;
 
+    @Column(name = "session_state")
+    private int sessionState;
+
     public Attendance() {
     }
 
-    public Attendance(int attendanceId, int playerId, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight) {
+    public Attendance(int attendanceId, int playerId, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight, int sessionState) {
         this.attendanceId = attendanceId;
         this.playerId = playerId;
         this.attendanceDate = attendanceDate;
@@ -59,6 +62,7 @@ public class Attendance {
         this.sessionSix = sessionSix;
         this.sessionSeven = sessionSeven;
         this.sessionEight = sessionEight;
+        this.sessionState = sessionState;
     }
 
 }
