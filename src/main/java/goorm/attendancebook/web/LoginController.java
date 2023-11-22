@@ -27,6 +27,6 @@ public class LoginController {
 
     @PostMapping("/player")
     public PlayerLoginResponseDto<String> loginByPlayerName(@RequestBody PlayerLoginDto playerLoginDto) {
-        return loginService.playerLoginService(playerLoginDto.getLoginEmail(), playerLoginDto.getLoginPw());
+        return loginService.playerLoginService(playerLoginDto.getLoginEmail(), playerLoginDto.getLoginBirth());
     }
 }

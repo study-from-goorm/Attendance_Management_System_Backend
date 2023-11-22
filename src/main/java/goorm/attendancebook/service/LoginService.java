@@ -34,10 +34,10 @@ public class LoginService {
     }
 
 
-    public PlayerLoginResponseDto<String> playerLoginService(String loginEmail, String loginPw) {
+    public PlayerLoginResponseDto<String> playerLoginService(String loginEmail, String loginBirth) {
         return (PlayerLoginResponseDto<String>) playerRepository.findByPlayerEmail(loginEmail)
                 .map(player -> {
-                    if (bCryptPasswordEncoder.matches(loginPw, player.getPlayerPw())) {
+                    if (bCryptPasswordEncoder.matches(loginBirth, player.getPlayerPw())) {
                         // 성공 시, JWT 토큰 생성 및 반환
                         String token = tokenProvider.createToken(player.getPlayerEmail());
                         return PlayerLoginResponseDto.setSuccess(player.getPlayerId(), "Login successful", token);
