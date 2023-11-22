@@ -107,7 +107,9 @@ SET session_state = CASE
                         WHEN (session_one = 4) + (session_two = 4) + (session_three = 4) + (session_four = 4) +
                              (session_five = 4) + (session_six = 4) + (session_seven = 4) + (session_eight = 4) > 1 THEN 4
                         ELSE 2
-    END;
+END
+WHERE player_id is not null;
+
 
 SELECT * FROM admins;
 SELECT * FROM players;

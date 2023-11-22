@@ -68,12 +68,6 @@ public class PlayerService {
         return new CourseSessionDto(playerCourse, date, playerSessionList);
     }
 
-
-    @Autowired
-    public PlayerService(PlayerRepository playerRepository) {
-        this.playerRepository = playerRepository;
-    }
-
     public List<Player> getAllPlayers() {
         return playerRepository.findAll();
     }
@@ -122,7 +116,7 @@ public class PlayerService {
         LocalDate startDate = LocalDate.parse(request.getStartDate());
         LocalDate endDate = LocalDate.parse(request.getEndDate());
         List<Attendance> dateList =
-                attendanceRepository.findByPlayerIdAndAttendanceDateBetween(player.getPlayerId(), startDate, endDate);
+                attendanceRepository.findByPlayerAndAttendanceDateBetween(player, startDate, endDate);
 
         // 출석: 1, 지각: 2, 조퇴:3, 외출:4, 결석:5, 공결: 6
         int state1 = 0;
@@ -178,7 +172,8 @@ public class PlayerService {
 
     public SearchAttendanceDetail searchAttendanceDetail(int playerId, String date){
         LocalDate localDate = LocalDate.parse(date);
-        Attendance attendance = attendanceRepository.findByPlayerIdAndAttendanceDate(playerId, localDate);
+        Optional<Player> player = playerRepository.findById(playerId);
+        Attendance attendance = attendanceRepository.findByPlayerAndAttendanceDate(player, localDate);
 
         return SearchAttendanceDetail.builder()
                 .attendanceId(attendance.getAttendanceId())

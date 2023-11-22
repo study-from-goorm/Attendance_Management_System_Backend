@@ -1,6 +1,5 @@
 package goorm.attendancebook.domain.dao;
 
-import goorm.attendancebook.domain.dto.SignUpDto;
 import jakarta.persistence.*;
 import lombok.Data;
 

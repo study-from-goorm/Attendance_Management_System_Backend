@@ -68,7 +68,6 @@ public class AdminController {
 
     @PostMapping("/add")
     public Attendance createPlayer(@RequestBody Player player) {
-        System.out.println(player);
         return adminService.addPlayer(player);
     }
 }

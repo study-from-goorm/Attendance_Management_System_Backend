@@ -80,4 +80,5 @@ public class Attendance {
         this.sessionEight = statuses.get(7);
     }
 
+
 }
