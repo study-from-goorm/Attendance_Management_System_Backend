@@ -72,23 +72,23 @@ INSERT INTO players (player_name, player_pw, player_email, player_course)
 VALUES ('라', '423456','라@goorm.io', '풀스택 3회차');
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
-VALUES (4, CURRENT_DATE(), 1, 1, 1, 1, 1, 1, 1, 1); # 정상 출석
+VALUES (4, CURRENT_DATE()-5, 1, 1, 1, 1, 1, 1, 1, 1); # 정상 출석
 
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
-VALUES (4, CURRENT_DATE(), 5, 5, 5, 5, 5, 5, 5, 5); # 결석
+VALUES (4, CURRENT_DATE()-4, 5, 5, 5, 5, 5, 5, 5, 5); # 결석
 
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
-VALUES (4, CURRENT_DATE(), 6, 6, 6, 6, 6, 6, 6, 6); # 공결
+VALUES (4, CURRENT_DATE()-3, 6, 6, 6, 6, 6, 6, 6, 6); # 공결
 
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
-VALUES (4, CURRENT_DATE(), 2, 2, 1, 1, 1, 1, 1, 1); # 지각
+VALUES (4, CURRENT_DATE()-2, 2, 2, 1, 1, 1, 1, 1, 1); # 지각
 
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
-VALUES (4, CURRENT_DATE(), 1, 1, 1, 1, 1, 3, 3, 3); # 조퇴
+VALUES (4, CURRENT_DATE()-1, 1, 1, 1, 1, 1, 3, 3, 3); # 조퇴
 
 INSERT INTO attendances (player_id, attendance_date, session_one, session_two, session_three
                         , session_four, session_five, session_six, session_seven, session_eight)
