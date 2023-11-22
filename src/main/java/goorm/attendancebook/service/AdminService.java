@@ -24,7 +24,7 @@ public class AdminService {
         playerRepository.save(player);
 
         Attendance attendance = new Attendance();
-        attendance.setPlayerId(player.getPlayerId());
+        attendance.setPlayer(player);
         attendance.setAttendanceDate(LocalDate.now());
 
         return attendanceRepository.save(attendance);

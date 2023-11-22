@@ -3,6 +3,7 @@ package goorm.attendancebook.domain.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,8 +15,9 @@ public class Attendance {
     @Column(name = "attendance_id")
     private int attendanceId;
 
-    @Column(name = "player_id")
-    private int playerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id") // This column is a foreign key in the database.
+    private Player player;
 
     @Column(name = "attendance_date")
     private LocalDate attendanceDate; // 기본값은 JPA에서 설정하지 않음
@@ -50,9 +52,9 @@ public class Attendance {
     public Attendance() {
     }
 
-    public Attendance(int attendanceId, int playerId, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight, int sessionState) {
+    public Attendance(int attendanceId, Player player, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight) {
         this.attendanceId = attendanceId;
-        this.playerId = playerId;
+        this.player = player;
         this.attendanceDate = attendanceDate;
         this.sessionOne = sessionOne;
         this.sessionTwo = sessionTwo;
@@ -64,5 +66,19 @@ public class Attendance {
         this.sessionEight = sessionEight;
         this.sessionState = sessionState;
     }
+    public void setSessionStatus(List<Integer> statuses) {
+        if (statuses == null || statuses.size() != 8) {
+            throw new IllegalArgumentException("Statuses must contain 8 elements.");
+        }
+        this.sessionOne = statuses.get(0);
+        this.sessionTwo = statuses.get(1);
+        this.sessionThree = statuses.get(2);
+        this.sessionFour = statuses.get(3);
+        this.sessionFive = statuses.get(4);
+        this.sessionSix = statuses.get(5);
+        this.sessionSeven = statuses.get(6);
+        this.sessionEight = statuses.get(7);
+    }
+
 
 }

@@ -26,7 +26,7 @@ public class AttendanceService {
 
         for (Player player : players) {
             Attendance attendance = new Attendance();
-            attendance.setPlayerId(player.getPlayerId());
+            attendance.setPlayer(player);
             attendance.setAttendanceDate(today);
 
             attendanceRepository.save(attendance);
