@@ -44,8 +44,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(int playerId, String playerPw, String playerName, String playerEmail, String playerCourse) {
-        this.playerId = playerId;
+    public Player(String playerPw, String playerName, String playerEmail, String playerCourse) {
         this.playerPw = playerPw;
         this.playerName = playerName;
         this.playerEmail = (playerEmail != null) ? playerEmail : "youremail@groom.io";

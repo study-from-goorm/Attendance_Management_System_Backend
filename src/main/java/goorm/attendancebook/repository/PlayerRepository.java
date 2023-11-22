@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
-    List<Player> findByPlayerId(int playerId);
+    Player findByPlayerNameAndPlayerCourseAndPlayerPw(String playerName, String playerCourse, String playerPw);
 
     @Query("SELECT DISTINCT p.playerCourse FROM Player p WHERE p.playerCourse IS NOT NULL")
     List<String> findDistinctPlayerCourses();
@@ -36,4 +36,7 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
     List<Player> findPlayerByPlayerNameAndPlayerEmailAndPlayerCourse(String playerName, String playerEmail, String playerCourse);
 
     Optional<Player> findByPlayerName(String playerName);
+
+    Optional<Player> findByPlayerEmail(String playerEmail);
+
 }

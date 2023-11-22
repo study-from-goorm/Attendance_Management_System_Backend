@@ -15,15 +15,27 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import goorm.attendancebook.domain.dao.Attendance;
+import goorm.attendancebook.domain.dao.Player;
+import goorm.attendancebook.repository.PlayerRepository;
+import goorm.attendancebook.service.AdminService;
+import goorm.attendancebook.service.PlayerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
 public class AdminController {
+
     private final AdminRepository adminRepository;
     private final AttendanceRepository attendanceRepository;
     private final PlayerRepository playerRepository;
     private final PlayerService playerService;
+    private final AdminService adminService;
 
     @GetMapping("/index")
     public ResponseDto<List<String>> getPlayerCourse() {
@@ -54,4 +66,9 @@ public class AdminController {
     }
 
 
+    @PostMapping("/add")
+    public Attendance createPlayer(@RequestBody Player player) {
+        System.out.println(player);
+        return adminService.addPlayer(player);
+    }
 }

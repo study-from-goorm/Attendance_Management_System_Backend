@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignInDto {
+public class PlayerLoginDto {
     @NotBlank
-    private String adminId;
+    private String loginCourse;
     @NotBlank
-    private String adminPw;
+    private String loginEmail;
+    @NotBlank
+    private String loginPw;
 }

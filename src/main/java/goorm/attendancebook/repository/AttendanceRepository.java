@@ -10,6 +10,10 @@ import java.util.List;
 
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer> {
-    List<Attendance> findByPlayerAndAttendanceDate(Player player, LocalDate attendanceDate);
+    List<Attendance> findByAttendanceDate(LocalDate attendanceDate);
+
+    Attendance findByPlayerIdAndAttendanceDate(int playerId, LocalDate localDate);
+
+    List<Attendance> findByPlayerIdAndAttendanceDateBetween(int playerId, LocalDate startDate, LocalDate endDate);
 
 }

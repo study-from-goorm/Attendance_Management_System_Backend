@@ -46,6 +46,9 @@ public class Attendance {
     @Column(name = "session_eight", columnDefinition = "int default 0")
     private int sessionEight = 0;
 
+    @Column(name = "session_state")
+    private int sessionState;
+
     public Attendance() {
     }
 
@@ -61,6 +64,7 @@ public class Attendance {
         this.sessionSix = sessionSix;
         this.sessionSeven = sessionSeven;
         this.sessionEight = sessionEight;
+        this.sessionState = sessionState;
     }
     public void setSessionStatus(List<Integer> statuses) {
         if (statuses == null || statuses.size() != 8) {

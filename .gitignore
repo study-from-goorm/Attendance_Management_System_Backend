@@ -35,8 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/secret.properties
-
-
 /src/main/resources/application.properties
+/src/main/resources/secret.properties
 /build.gradle
