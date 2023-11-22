@@ -28,7 +28,7 @@ CREATE TABLE players (
 CREATE TABLE attendances (
     attendance_id INT AUTO_INCREMENT,
     player_id INT,
-    attendance_date DATE DEFAULT CURRENT_DATE,
+    attendance_date DATE DEFAULT (CURRENT_DATE),
     session_one INT DEFAULT 0,
     session_two INT DEFAULT 0,
     session_three INT DEFAULT 0,

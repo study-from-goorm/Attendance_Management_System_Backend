@@ -14,8 +14,9 @@ public class Attendance {
     @Column(name = "attendance_id")
     private int attendanceId;
 
-    @Column(name = "player_id")
-    private int playerId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "player_id") // This column is a foreign key in the database.
+    private Player player;
 
     @Column(name = "attendance_date")
     private LocalDate attendanceDate; // 기본값은 JPA에서 설정하지 않음
@@ -47,9 +48,9 @@ public class Attendance {
     public Attendance() {
     }
 
-    public Attendance(int attendanceId, int playerId, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight) {
+    public Attendance(int attendanceId, Player player, LocalDate attendanceDate, int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight) {
         this.attendanceId = attendanceId;
-        this.playerId = playerId;
+        this.player = player;
         this.attendanceDate = attendanceDate;
         this.sessionOne = sessionOne;
         this.sessionTwo = sessionTwo;

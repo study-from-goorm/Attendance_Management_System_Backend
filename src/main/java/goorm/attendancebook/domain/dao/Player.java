@@ -3,6 +3,8 @@ package goorm.attendancebook.domain.dao;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name="players")
@@ -24,6 +26,9 @@ public class Player {
 
     @Column(name = "player_course", length = 20, nullable = false)
     private String playerCourse;
+
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+    private List<Attendance> attendances;
 
     public Player() {
     }

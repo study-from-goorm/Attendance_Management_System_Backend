@@ -1,5 +1,6 @@
 package goorm.attendancebook.domain.dao;
 
+import goorm.attendancebook.domain.dto.SignUpDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,9 +19,9 @@ public class AdminAccount {
     public AdminAccount() {
     }
 
-    public AdminAccount(String adminId, String adminPw) {
-        this.adminId = adminId;
-        this.adminPw = adminPw;
+    public AdminAccount(SignUpDto dto) {
+        this.adminId = dto.getAdminId();
+        this.adminPw = dto.getAdminPw();
     }
 
 }
