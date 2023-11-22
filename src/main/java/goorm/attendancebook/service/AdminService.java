@@ -21,12 +21,12 @@ public class AdminService {
     public Attendance addPlayer(Player player) {
         String hashedPassword = passwordEncoder.encode(player.getPlayerPw());
         player.setPlayerPw(hashedPassword);
+        playerRepository.save(player);
 
         Attendance attendance = new Attendance();
         attendance.setPlayerId(player.getPlayerId());
         attendance.setAttendanceDate(LocalDate.now());
 
-        playerRepository.save(player);
         return attendanceRepository.save(attendance);
     }
 

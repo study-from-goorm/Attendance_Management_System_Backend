@@ -19,11 +19,11 @@ CREATE TABLE admins (
 
 CREATE TABLE players (
     player_id INT AUTO_INCREMENT,
+    player_email VARCHAR(100) NOT NULL ,
     player_pw VARCHAR(255) NOT NULL,
     player_name VARCHAR(20) NOT NULL,
-    player_email VARCHAR(100) DEFAULT 'youremail@groom.io',
     player_course VARCHAR(20) NOT NULL,
-    PRIMARY KEY (player_id)
+    PRIMARY KEY (player_id, player_email)
 );
 
 CREATE TABLE attendances (

@@ -11,10 +11,10 @@ public class AdminLoginResponseDto<D> {
     private boolean result;
     private String role;
     private String message;
-    private D data;
+    private D token;
 
-    public static <D> AdminLoginResponseDto<D> setSuccess (String message, D data) {
-        return AdminLoginResponseDto.set(true, "ROLE_ADMIN", message, data);
+    public static <D> AdminLoginResponseDto<D> setSuccess (String message, D token) {
+        return AdminLoginResponseDto.set(true, "ROLE_ADMIN", message, token);
     }
 
     public static <D> AdminLoginResponseDto<D> setFailed (String message) {
