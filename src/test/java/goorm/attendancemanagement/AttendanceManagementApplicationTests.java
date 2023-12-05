@@ -1,10 +1,10 @@
-package goorm.attendancebook;
+package goorm.attendancemanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AttendanceBookApplicationTests {
+class AttendanceManagementApplicationTests {
 
 	@Test
 	void contextLoads() {
