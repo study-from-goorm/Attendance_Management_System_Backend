@@ -24,10 +24,10 @@ public class Application {
     @Column(name = "application_date")
     private LocalDateTime applicationDate;
 
-    @Column(name = "application_type")
+    @Enumerated(EnumType.STRING)
     private ApplicationType applicationType;
 
-    @Column(name = "application_status")
+    @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
     @Column(name = "application_reason")

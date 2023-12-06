@@ -31,7 +31,6 @@ public class Player {
 
 
     public Player() {
-
     }
 
     public Player(String email, String pw, String name, Course course) {
