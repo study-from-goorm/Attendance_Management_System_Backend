@@ -3,6 +3,7 @@ package goorm.attendancemanagement;
 import goorm.attendancemanagement.domain.dao.Admin;
 import goorm.attendancemanagement.domain.dao.Course;
 import goorm.attendancemanagement.domain.dao.Player;
+import goorm.attendancemanagement.domain.dao.Role;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbInit() {
-            Admin admin = createAdmin("goorm", "1234", "admin");
+            Admin admin = createAdmin("goorm", "1234", Role.ADMIN);
             em.persist(admin);
 
             Course course1 = createCourse("풀스택 1회차");
@@ -55,7 +56,7 @@ public class InitDb {
 
         }
 
-        private Admin createAdmin(String id, String pw, String role) {
+        private Admin createAdmin(String id, String pw, Role role) {
             return new Admin(id, pw, role);
         }
 
