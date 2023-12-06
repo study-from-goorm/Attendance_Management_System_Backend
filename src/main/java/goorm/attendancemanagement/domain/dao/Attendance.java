@@ -10,24 +10,29 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
-@Table(name="attendances")
 public class Attendance {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "attendance_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int attendanceId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @Column(name = "attendance_date")
     private LocalDate attendanceDate;
 
     @Enumerated(EnumType.STRING)
     private AttendanceStatus attendanceStatus;
 
-    @Column(name = "attendance_note")
     private String attendanceNote;
+
+    @Embedded
+    private Session session;
+
+    //==연관관계 메서드==//
+    public void setPlayer(Player player) {
+        this.player = player;
+        player.getAttendance().add(this);
+    }
 }

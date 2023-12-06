@@ -2,26 +2,17 @@ package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
-@Table(name="courses")
+@Getter @Setter
 public class Course {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "course_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courseId;
 
-    @Column(name = "course_name")
     private String courseName;
 
-    public Course() {
-
-    }
-
-    public Course(String name) {
-        this.courseName = name;
-    }
 }

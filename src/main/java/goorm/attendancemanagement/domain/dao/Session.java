@@ -1,7 +1,12 @@
 package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
+import lombok.Getter;
 
+@Embeddable
+@Getter
 public class Session {
 
     private int sessionOne;

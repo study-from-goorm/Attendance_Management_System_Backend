@@ -2,6 +2,7 @@ package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -9,19 +10,16 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
-@Table(name="applications")
+@Getter @Setter
 public class Application {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "application_id")
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int applicationId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @Column(name = "application_date")
     private LocalDateTime applicationDate;
 
     @Enumerated(EnumType.STRING)
@@ -30,6 +28,11 @@ public class Application {
     @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
-    @Column(name = "application_reason")
     private String applicationReason;
+
+    //==연관관계 메서드==//
+    public void setPlayer(Player player) {
+        this.player = player;
+        player.getApplication().add(this);
+    }
 }
