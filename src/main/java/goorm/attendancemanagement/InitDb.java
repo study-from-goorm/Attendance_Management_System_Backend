@@ -1,14 +1,13 @@
 package goorm.attendancemanagement;
 
-import goorm.attendancemanagement.domain.dao.Admin;
-import goorm.attendancemanagement.domain.dao.Course;
-import goorm.attendancemanagement.domain.dao.Player;
-import goorm.attendancemanagement.domain.dao.Role;
+import goorm.attendancemanagement.domain.dao.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor
@@ -36,7 +35,7 @@ public class InitDb {
             em.persist(course1);
             Course course2 = createCourse("풀스택 2회차");
             em.persist(course2);
-            Course course3 = createCourse("풀스택 2회차");
+            Course course3 = createCourse("풀스택 3회차");
             em.persist(course3);
 
             Player player1 = createPlayer("kim@goorm.io", "123456", "김김김", course1);
@@ -54,6 +53,10 @@ public class InitDb {
             Player player7 = createPlayer("hwang@goorm.io", "789012", "황황황", course3);
             em.persist(player7);
 
+            Application application = new Application(player1, LocalDate.now().minusDays(2), LocalDate.now(), ApplicationType.휴가, ApplicationStatus.대기, "쉬고싶어요");
+            em.persist(application);
+            Application application2 = new Application(player2, LocalDate.now().minusDays(1), LocalDate.now(), ApplicationType.외출, ApplicationStatus.대기, "놀고올게");
+            em.persist(application2);
         }
 
         private Admin createAdmin(String id, String pw, Role role) {

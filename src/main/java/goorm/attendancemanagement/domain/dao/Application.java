@@ -1,16 +1,19 @@
 package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Application {
 
     @Id @GeneratedValue(strategy = IDENTITY)
@@ -20,9 +23,9 @@ public class Application {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    private LocalDateTime applicationWriteDate;
-
     private LocalDate applicationDate;
+
+    private LocalDate applicationTargetDate;
 
     @Enumerated(EnumType.STRING)
     private ApplicationType applicationType;
@@ -31,4 +34,24 @@ public class Application {
     private ApplicationStatus applicationStatus;
 
     private String applicationReason;
+
+    public Application(
+            Player player,
+            LocalDate applicationDate,
+            LocalDate applicationTargetDate,
+            ApplicationType applicationType,
+            ApplicationStatus applicationStatus,
+            String applicationReason) {
+
+        this.player = player;
+        this.applicationDate = applicationDate;
+        this.applicationTargetDate = applicationTargetDate;
+        this.applicationType = applicationType;
+        this.applicationStatus = applicationStatus;
+        this.applicationReason = applicationReason;
+    }
+
+    public void setApplicationStaus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
 }
