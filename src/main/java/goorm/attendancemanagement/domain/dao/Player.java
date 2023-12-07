@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -26,14 +27,14 @@ public class Player {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "course_id")
+    @JsonIgnore
     private Course course;
 
     public Player() {}
-
-    public Player(String email, String pw, String name, Course course) {
-        this.playerEmail = email;
-        this.playerPassword = pw;
-        this.playerName = name;
+    public Player(String playerEmail, String playerPassword, String playerName, Course course) {
+        this.playerEmail = playerEmail;
+        this.playerPassword = playerPassword;
+        this.playerName = playerName;
         this.course = course;
     }
 
