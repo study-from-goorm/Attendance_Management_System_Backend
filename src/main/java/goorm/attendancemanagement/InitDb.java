@@ -28,7 +28,7 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbInit() {
-            Admin admin = createAdmin("goorm", "1234", "admin");
+            Admin admin = createAdmin("goorm", "$2a$12$hySKIcaSPZwOGMsb2ENd.uc/RuPH.NrUb6KzNzoNxd/lqGEUGlwvm", "ROLE_ADMIN");
             em.persist(admin);
 
             Course course1 = createCourse("풀스택 1회차");
