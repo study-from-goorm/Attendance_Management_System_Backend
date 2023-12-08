@@ -1,17 +1,14 @@
 package goorm.attendancemanagement.repository;
 
 import goorm.attendancemanagement.domain.dao.Player;
-import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-@Repository
-@RequiredArgsConstructor
-public class PlayerRepository {
+import java.util.List;
 
-    private final EntityManager em;
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
-    public void save(Player player) {
-        em.persist(player);
-    }
+    @Query("select p from Player p join fetch p.course where p.playerId = :id")
+    List<Player> findByIdWithCourse(@Param("id") int id);
 }

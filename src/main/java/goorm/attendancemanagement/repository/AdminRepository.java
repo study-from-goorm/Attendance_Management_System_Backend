@@ -19,7 +19,7 @@ public class AdminRepository {
     public Admin findAdmin() {
         try {
             return em.createQuery("SELECT a FROM Admin a WHERE a.role = :role", Admin.class)
-                    .setParameter("role", "admin")
+                    .setParameter("role", "ADMIN")
                     .setMaxResults(1)
                     .getSingleResult();
         } catch (NoResultException e) {

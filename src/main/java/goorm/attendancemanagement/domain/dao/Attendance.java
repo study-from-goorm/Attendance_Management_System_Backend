@@ -2,6 +2,7 @@ package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -9,7 +10,7 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
+@Getter @Setter
 public class Attendance {
 
     @Id

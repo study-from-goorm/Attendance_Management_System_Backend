@@ -1,14 +1,13 @@
 package goorm.attendancemanagement;
 
-import goorm.attendancemanagement.domain.dao.Admin;
-import goorm.attendancemanagement.domain.dao.Course;
-import goorm.attendancemanagement.domain.dao.Player;
-import goorm.attendancemanagement.domain.dao.Role;
+import goorm.attendancemanagement.domain.dao.*;
 import jakarta.annotation.PostConstruct;
 import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor
@@ -54,6 +53,122 @@ public class InitDb {
             Player player7 = createPlayer("hwang@goorm.io", "789012", "황황황", course3);
             em.persist(player7);
 
+            Attendance attendance1 = createAttendance(
+                    player1, LocalDate.of(2023, 11, 30), AttendanceStatus.partiallyPresent,
+                   1,0, 0, 0, 1, 1, 1, 1);
+            em.persist(attendance1);
+            Attendance attendance2 = createAttendance(
+                    player2, LocalDate.of(2023, 11, 30), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance2);
+            Attendance attendance3 = createAttendance(
+                    player3, LocalDate.of(2023, 11, 30), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance3);
+            Attendance attendance4 = createAttendance(
+                    player4, LocalDate.of(2023, 11, 30), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance4);
+            Attendance attendance5 = createAttendance(
+                    player5, LocalDate.of(2023, 11, 30), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance5);
+            Attendance attendance6 = createAttendance(
+                    player6, LocalDate.of(2023, 11, 30), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance6);
+            Attendance attendance7 = createAttendance(
+                    player7, LocalDate.of(2023, 11, 30), AttendanceStatus.partiallyPresent,
+                    1, 1, 0, 0, 1, 1, 1, 1);
+            em.persist(attendance7);
+
+            Attendance attendance8 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 1), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance8);
+            Attendance attendance9 = createAttendance(
+                    player2, LocalDate.of(2023, 12, 1), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance9);
+            Attendance attendance10 = createAttendance(
+                    player3, LocalDate.of(2023, 12, 1), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance10);
+            Attendance attendance11 = createAttendance(
+                    player4, LocalDate.of(2023, 12, 1), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance11);
+            Attendance attendance12 = createAttendance(
+                    player5, LocalDate.of(2023, 12, 1), AttendanceStatus.onVacation,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance12);
+            Attendance attendance13 = createAttendance(
+                    player6, LocalDate.of(2023, 12, 1), AttendanceStatus.officiallyExcused,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance13);
+            Attendance attendance14 = createAttendance(
+                    player7, LocalDate.of(2023, 12, 1), AttendanceStatus.absent,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance14);
+
+            Attendance attendance15 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 2), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance15);
+            Attendance attendance16 = createAttendance(
+                    player2, LocalDate.of(2023, 12, 2), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance16);
+            Attendance attendance17 = createAttendance(
+                    player3, LocalDate.of(2023, 12, 2), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance17);
+            Attendance attendance18 = createAttendance(
+                    player4, LocalDate.of(2023, 12, 2), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance18);
+            Attendance attendance19 = createAttendance(
+                    player5, LocalDate.of(2023, 12, 2), AttendanceStatus.onVacation,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance19);
+            Attendance attendance20 = createAttendance(
+                    player6, LocalDate.of(2023, 12, 2), AttendanceStatus.officiallyExcused,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance20);
+            Attendance attendance21 = createAttendance(
+                    player7, LocalDate.of(2023, 12, 2), AttendanceStatus.absent,
+                    0, 0, 0, 0, 0, 0, 0, 0);
+            em.persist(attendance21);
+
+            Attendance attendance22 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 3), AttendanceStatus.onVacation,
+                   0,0,0,0,0,0,0,0);
+            em.persist(attendance22);
+            Attendance attendance23 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 4), AttendanceStatus.absent,
+                    0,0,0,0,0,0,0,0);
+            em.persist(attendance23);
+            Attendance attendance24 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 5), AttendanceStatus.officiallyExcused,
+                    0,0,0,0,0,0,0,0);
+            em.persist(attendance24);
+            Attendance attendance25 = createAttendance(
+                    player1, LocalDate.of(2023, 12, 6), AttendanceStatus.present,
+                    1, 1, 1, 1, 1, 1, 1, 1);
+            em.persist(attendance25);
+
+
+        }
+
+        private Attendance createAttendance(
+                Player player, LocalDate attendanceDate, AttendanceStatus attendanceStatus, int one,
+                int two, int three, int four, int five, int six, int seven, int eight) {
+            Attendance attendance = new Attendance();
+            attendance.setPlayer(player);
+            attendance.setAttendanceDate(attendanceDate);
+            attendance.setAttendanceStatus(attendanceStatus);
+            attendance.setSession(new Session(one, two, three, four, five, six, seven, eight));
+            return attendance;
         }
 
         private Admin createAdmin(String id, String email, String pw, Role role) {

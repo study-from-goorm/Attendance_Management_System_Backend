@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static jakarta.persistence.FetchType.LAZY;
@@ -20,7 +21,9 @@ public class Application {
     @JoinColumn(name = "player_id")
     private Player player;
 
-    private LocalDateTime applicationDate;
+    private LocalDate applicationDate;
+
+    private LocalDate applicationTargetDate;
 
     @Enumerated(EnumType.STRING)
     private ApplicationType applicationType;

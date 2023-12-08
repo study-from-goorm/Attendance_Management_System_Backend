@@ -1,44 +1,69 @@
 package goorm.attendancemanagement.service;
 
-import goorm.attendancemanagement.domain.dao.Application;
-import goorm.attendancemanagement.domain.dao.ApplicationStatus;
-import goorm.attendancemanagement.domain.dao.ApplicationType;
-import goorm.attendancemanagement.domain.dao.Player;
-import org.springframework.beans.factory.annotation.Autowired;
+import goorm.attendancemanagement.domain.dao.*;
+import goorm.attendancemanagement.domain.dto.ApplicationRequestDto;
+import goorm.attendancemanagement.domain.dto.ApplicationResponseConfirmDto;
+import goorm.attendancemanagement.domain.dto.ApplicationResponseDto;
+import goorm.attendancemanagement.repository.ApplicatonRepository;
+import goorm.attendancemanagement.repository.PlayerRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 @Service
+@AllArgsConstructor
 public class ApplicationService {
 
-    @Autowired
-    private EmailService emailService;
+    private final ApplicatonRepository applicationRepository;
+    private final PlayerRepository playerRepository;
 
-    public Application createApplication(Player player, ApplicationType applicationType, LocalDateTime date, String reason) {
+    public ApplicationResponseDto createApplication(int playerId, ApplicationRequestDto requestDto) {
+
+        Optional<Application> existingApplication = applicationRepository.findByPlayer_playerIdAndApplicationTargetDate(playerId, requestDto.getApplicationTargetDate());
+        if (existingApplication.isPresent()) {
+            throw new IllegalStateException("해당 날짜에 이미 요청하신 신청이 존재합니다.");
+        }
+
         Application application = new Application();
-        application.setPlayer(player);
-        application.setApplicationType(applicationType);
-        application.setApplicationStatus(ApplicationStatus.대기);
-        application.setApplicationDate(date);
-        application.setApplicationReason(reason);
-        player.getApplication().add(application);
+        application.setApplicationDate(LocalDate.now());
+        application.setApplicationTargetDate(requestDto.getApplicationTargetDate());
+        application.setApplicationType(ApplicationType.valueOf(requestDto.getApplicationType()));
+        application.setApplicationStatus(ApplicationStatus.대기); // 초기 상태는 '대기'로 설정
+        application.setApplicationReason(requestDto.getApplicationReason());
 
-        notifyAdminForNewApplication(application); // 신청 생성 후 관리자에게 알림 전송
+        // playerId를 기반으로 Player 엔티티를 찾아 연결
+        Optional<Player> player = playerRepository.findById(playerId);
+        player.ifPresent(application::setPlayer);
 
-        return application;
+        // 저장
+        application = applicationRepository.save(application);
+
+        // ApplicationResponseDto로 변환
+        return new ApplicationResponseDto(
+                application.getApplicationId(),
+                application.getApplicationTargetDate(),
+                application.getApplicationType().toString(),
+                application.getApplicationStatus().toString(),
+                application.getApplicationReason()
+        );
     }
 
     public void cancelApplication(Application application) {
         switch (application.getApplicationStatus()) {
             case 대기:
                 application.setApplicationStatus(ApplicationStatus.취소);
-                notifyAdminForCancellation(application, "취소됨");
+//                notifyAdminForCancellation(application, "취소됨");
                 break;
 
             case 승인:
                 application.setApplicationStatus(ApplicationStatus.취소요청);
-                notifyAdminForCancellation(application, "취소 요청됨");
+//                notifyAdminForCancellation(application, "취소 요청됨");
                 break;
 
             case 거절:
@@ -49,19 +74,21 @@ public class ApplicationService {
         }
     }
 
-    private void notifyAdminForNewApplication(Application application) {
-        String adminEmail = "admin@example.com"; // 관리자 이메일
-        String message = "새로운 신청 알림: " + application.getPlayer().getPlayerName() + " - " + application.getApplicationType();
-
-        // 이메일 전송 로직
-        emailService.sendEmail(adminEmail, "새로운 신청 알림", message);
+    public List<ApplicationResponseConfirmDto> getPlayerApplications(int playerId) {
+        List<Application> applications = applicationRepository.findAllByPlayer_playerId(playerId);
+        return applications.stream()
+                .map(app -> new ApplicationResponseConfirmDto(
+                        formatDate(app.getApplicationDate()),
+                        app.getApplicationTargetDate(),
+                        app.getApplicationType().name(),
+                        app.getApplicationReason(),
+                        app.getApplicationStatus().name()
+                ))
+                .collect(Collectors.toList());
     }
 
-    private void notifyAdminForCancellation(Application application, String statusMessage) {
-        String adminEmail = "admin@example.com"; // 관리자 이메일
-        String message = "신청 상태 변경 알림: " + statusMessage + " - " + application.getPlayer().getPlayerName();
-
-        // 이메일 전송 로직
-        emailService.sendEmail(adminEmail, "신청 상태 변경 알림", message);
+    private String formatDate(LocalDate localDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return localDate.format(formatter);
     }
 }
