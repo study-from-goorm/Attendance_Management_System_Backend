@@ -38,19 +38,19 @@ public class InitDb {
             Course course3 = createCourse("풀스택 2회차");
             em.persist(course3);
 
-            Player player1 = createPlayer("kim@goorm.io", "123456", "김김김", course1);
+            Player player1 = createPlayer("kim@goorm.io", "$2a$12$4QbpQ6YO8YX/d3O/KQcmYud34CqIg.NtPqRQQXFLyQXyKnJMPJNsu", "김김김", course1, "ROLE_USER");
             em.persist(player1);
-            Player player2 = createPlayer("lee@goorm.io", "234567", "이이이", course2);
+            Player player2 = createPlayer("lee@goorm.io", "234567", "이이이", course2, "ROLE_USER");
             em.persist(player2);
-            Player player3 = createPlayer("choi@goorm.io", "345678", "최최최", course3);
+            Player player3 = createPlayer("choi@goorm.io", "345678", "최최최", course3, "ROLE_USER");
             em.persist(player3);
-            Player player4 = createPlayer("park@goorm.io", "456789", "박박박", course1);
+            Player player4 = createPlayer("park@goorm.io", "456789", "박박박", course1, "ROLE_USER");
             em.persist(player4);
-            Player player5 = createPlayer("son@goorm.io", "567890", "손손손", course2);
+            Player player5 = createPlayer("son@goorm.io", "567890", "손손손", course2, "ROLE_USER");
             em.persist(player5);
-            Player player6 = createPlayer("kang@goorm.io", "678901", "강강강", course3);
+            Player player6 = createPlayer("kang@goorm.io", "678901", "강강강", course3, "ROLE_USER");
             em.persist(player6);
-            Player player7 = createPlayer("hwang@goorm.io", "789012", "황황황", course3);
+            Player player7 = createPlayer("hwang@goorm.io", "789012", "황황황", course3, "ROLE_USER");
             em.persist(player7);
 
         }
@@ -59,8 +59,8 @@ public class InitDb {
             return new Admin(id, pw, role);
         }
 
-        private Player createPlayer(String email, String pw, String name, Course course) {
-            return new Player(email, pw, name, course);
+        private Player createPlayer(String email, String pw, String name, Course course, String role) {
+            return new Player(email, pw, name, course, role);
         }
 
         private Course createCourse(String name) {

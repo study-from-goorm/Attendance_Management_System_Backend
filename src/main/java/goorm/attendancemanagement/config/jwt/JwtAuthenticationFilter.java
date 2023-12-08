@@ -1,7 +1,6 @@
 package goorm.attendancemanagement.config.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import goorm.attendancemanagement.config.auth.AdminDetails;
 import goorm.attendancemanagement.domain.dto.LoginRequestDto;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -20,7 +19,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
-    private final JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
@@ -34,22 +33,20 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(
-                        loginRequestDto.getName(),
+                        loginRequestDto.getId(),
                         loginRequestDto.getPassword());
 
         System.out.println("토큰 생성 완료");
 
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-
-        AdminDetails adminDetails = (AdminDetails) authentication.getPrincipal();
-        System.out.println("Authentication:" + adminDetails.getAdmin().getAdminId());
-        return authentication;
+        return authenticationManager.authenticate(authenticationToken);
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        AdminDetails adminDetails = (AdminDetails) authResult.getPrincipal();
-        String jwt = jwtTokenProvider.createToken(adminDetails);
-        response.addHeader("jwt", "Bearer " + jwt);
+//        UserDetails userDetails = (UserDetails) authResult.getPrincipal();
+//        String jwt = jwtTokenProvider.createToken(userDetails);
+        String[] tokens = jwtTokenProvider.createToken(authResult);
+        response.addHeader("accessToken", "Bearer " + tokens[0]);
+        response.addHeader("refershToken", "Bearer " + tokens[1]);
     }
 }

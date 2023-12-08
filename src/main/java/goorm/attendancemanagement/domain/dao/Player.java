@@ -29,18 +29,19 @@ public class Player {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Column(name = "role")
+    private String role;
 
     public Player() {
 
     }
 
-    public Player(String email, String pw, String name, Course course) {
+    public Player(String email, String pw, String name, Course course, String role) {
         this.playerEmail = email;
         this.playerPassword = pw;
         this.playerName = name;
         this.course = course;
-
-
+        this.role = role;
     }
 
 }
