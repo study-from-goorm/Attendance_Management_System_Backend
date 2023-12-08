@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreatePlayerDto {
+public class GetCoursesDto {
+
     private int courseId;
-    private String playerName;
-    private String playerEmail;
-    private String playerPassword;
+    private String courseName;
 }

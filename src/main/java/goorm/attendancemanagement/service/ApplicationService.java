@@ -3,6 +3,7 @@ package goorm.attendancemanagement.service;
 import goorm.attendancemanagement.domain.dao.Application;
 import goorm.attendancemanagement.domain.dao.ApplicationStatus;
 import goorm.attendancemanagement.domain.dto.GetApplicationDto;
+import goorm.attendancemanagement.domain.dto.GetApplicationsAllDto;
 import goorm.attendancemanagement.repository.ApplicationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,11 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
 
-    public List<GetApplicationDto> getApplicationsAll() {
+    public List<GetApplicationsAllDto> getApplicationsAll() {
         return applicationRepository.findAllWithPlayerAndCourse().stream()
-                .map(application -> new GetApplicationDto(
+                .map(application -> new GetApplicationsAllDto(
+                        application.getApplicationId(),
                         application.getApplicationDate(),
-                        application.getApplicationTargetDate(),
                         application.getPlayer().getPlayerName(),
                         application.getPlayer().getCourse().getCourseName(),
                         application.getApplicationType(),
@@ -36,10 +37,10 @@ public class ApplicationService {
                 .orElseThrow(() -> new EntityNotFoundException("Application not found"));
 
         return new GetApplicationDto(
-                application.getApplicationDate(),
-                application.getApplicationTargetDate(),
                 application.getPlayer().getPlayerName(),
                 application.getPlayer().getCourse().getCourseName(),
+                application.getApplicationDate(),
+                application.getApplicationTargetDate(),
                 application.getApplicationType(),
                 application.getApplicationReason(),
                 application.getApplicationStatus());

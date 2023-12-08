@@ -31,11 +31,11 @@ public class Player {
     private Course course;
 
     public Player() {}
-    public Player(String playerEmail, String playerPassword, String playerName, Course course) {
+    public Player(Course course,String playerName, String playerEmail, String playerPassword) {
+        this.course = course;
+        this.playerName = playerName;
         this.playerEmail = playerEmail;
         this.playerPassword = playerPassword;
-        this.playerName = playerName;
-        this.course = course;
     }
 
     // 양방향 관계인 player와 (attendance, application)의 순환 참조 방지

@@ -42,7 +42,7 @@ public class PlayerService {
         Course findCourse = courseRepository.findById(player.getCourseId())
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with ID: " + player.getCourseId()));
 
-        Player newPlayer = new Player(player.getPlayerEmail(), player.getPlayerPassword(), player.getPlayerName(), findCourse);
+        Player newPlayer = new Player(findCourse, player.getPlayerName(), player.getPlayerEmail(), player.getPlayerPassword());
         return playerRepository.save(newPlayer);
     }
 }

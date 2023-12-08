@@ -64,7 +64,7 @@ public class InitDb {
         }
 
         private Player createPlayer(String email, String pw, String name, Course course) {
-            return new Player(email, pw, name, course);
+            return new Player(course, name, email, pw);
         }
 
         private Course createCourse(String name) {

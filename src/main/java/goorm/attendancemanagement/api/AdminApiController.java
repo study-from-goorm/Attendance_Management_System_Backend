@@ -23,9 +23,9 @@ public class AdminApiController {
     private final PlayerService playerService;
     private final ApplicationService applicationService;
 
-    @GetMapping("/players")
-    public ResponseEntity<List<String>> getCoursesAndPlayers() {
-        return ResponseEntity.ok(courseService.getCourseNames());
+    @GetMapping("/courses")
+    public ResponseEntity<List<GetCoursesDto>> getCourses() {
+        return ResponseEntity.ok(courseService.getCourses());
     }
 
     @GetMapping("/{courseId}/players")
@@ -57,19 +57,19 @@ public class AdminApiController {
         }
     }
 
-    @GetMapping("/forms")
-    public ResponseEntity<List<GetApplicationDto>> getApplicationAll() {
+    @GetMapping("/applications")
+    public ResponseEntity<List<GetApplicationsAllDto>> getApplicationAll() {
         return ResponseEntity.ok(applicationService.getApplicationsAll());
 
     }
 
-    @GetMapping("/forms/{applicationId}")
+    @GetMapping("/applications/{applicationId}")
     public ResponseEntity<GetApplicationDto> getApplication(@PathVariable int applicationId) {
         return ResponseEntity.ok(applicationService.getApplicationById(applicationId));
 
     }
 
-    @PatchMapping("/forms/{applicationId}")
+    @PatchMapping("/applications/{applicationId}")
     public ResponseEntity<?> updateApplicationStatus(@PathVariable int applicationId, @RequestBody UpdateApplicationStatusDto applicationStatus) {
         applicationService.updateApplicationStatus(applicationId, applicationStatus.getApplicationStatus());
         return ResponseEntity.ok().build();

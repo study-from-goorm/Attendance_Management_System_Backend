@@ -11,12 +11,12 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetApplicationDto {
+public class GetApplicationsAllDto {
 
+    private int applicationId;
+    private LocalDate applicationDate;
     private String playerName;
     private String courseName;
-    private LocalDate applicationDate;
-    private LocalDate applicationTargetDate;
     private ApplicationType applicationType;
     private String applicationReason;
     private ApplicationStatus applicationStatus;

@@ -1,6 +1,7 @@
 package goorm.attendancemanagement.service;
 
 import goorm.attendancemanagement.domain.dao.Course;
+import goorm.attendancemanagement.domain.dto.GetCoursesDto;
 import goorm.attendancemanagement.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,12 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
 
-    public List<String> getCourseNames() {
+    public List<GetCoursesDto> getCourses() {
         return courseRepository.findAll().stream()
-                .map(Course::getCourseName)
+                .map(course -> new GetCoursesDto(
+                        course.getCourseId(),
+                        course.getCourseName()
+                ))
                 .collect(Collectors.toList());
     }
 
