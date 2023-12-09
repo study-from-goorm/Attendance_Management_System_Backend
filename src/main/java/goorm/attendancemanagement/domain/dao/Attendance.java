@@ -10,6 +10,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
+@Table(name = "Attendances")
 public class Attendance {
 
     @Id

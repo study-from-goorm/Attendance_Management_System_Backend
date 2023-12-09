@@ -36,8 +36,8 @@ public class AdminApiController {
     @PostMapping("/courses")
     public ResponseEntity<?> createCourse(@RequestBody CreateCourseDto course) {
         try {
-            Course newCourse = courseService.createCourse(course.getCourseName());
-            return ResponseEntity.status(HttpStatus.CREATED).body(newCourse);
+            courseService.createCourse(course.getCourseName());
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -48,8 +48,8 @@ public class AdminApiController {
     @PostMapping("/players")
     public ResponseEntity<?> createPlayer(@RequestBody CreatePlayerDto player) {
         try {
-            Player newPlayer = playerService.createPlayer(player);
-            return ResponseEntity.status(HttpStatus.CREATED).body(player);
+            playerService.createPlayer(player);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
