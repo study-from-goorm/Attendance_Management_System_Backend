@@ -1,35 +1,58 @@
 package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
-@Table(name="applications")
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "Applications")
 public class Application {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "application_id")
     private int applicationId;
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "player_id")
     private Player player;
 
-    @Column(name = "application_date")
-    private LocalDateTime applicationDate;
+    private LocalDate applicationDate;
 
-    @Column(name = "application_type")
+    private LocalDate applicationTargetDate;
+
+    @Enumerated(EnumType.STRING)
     private ApplicationType applicationType;
 
-    @Column(name = "application_status")
+    @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
-    @Column(name = "application_reason")
     private String applicationReason;
+
+    public Application(
+            Player player,
+            LocalDate applicationDate,
+            LocalDate applicationTargetDate,
+            ApplicationType applicationType,
+            ApplicationStatus applicationStatus,
+            String applicationReason) {
+
+        this.player = player;
+        this.applicationDate = applicationDate;
+        this.applicationTargetDate = applicationTargetDate;
+        this.applicationType = applicationType;
+        this.applicationStatus = applicationStatus;
+        this.applicationReason = applicationReason;
+    }
+
+    public void setApplicationStaus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
 }
