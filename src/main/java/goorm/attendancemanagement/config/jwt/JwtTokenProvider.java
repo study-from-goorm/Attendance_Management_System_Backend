@@ -66,7 +66,7 @@ public class JwtTokenProvider {
                 Arrays.stream(claims.get("roles").toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .toList();
-        String authority = authorities.stream().map(GrantedAuthority::getAuthority).findAny().orElse("");
+        String authority = claims.get("roles").toString();
 
         if (authority.equals("ROLE_ADMIN")) {
             Admin admin = new Admin(claims.getSubject(), "", authorities.toString());
