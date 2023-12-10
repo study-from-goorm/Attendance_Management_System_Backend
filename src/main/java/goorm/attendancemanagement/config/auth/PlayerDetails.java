@@ -21,7 +21,7 @@ public class PlayerDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword() throws NullPointerException{
         return player.getPlayerPassword();
     }
 

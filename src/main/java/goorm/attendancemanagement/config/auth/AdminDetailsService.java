@@ -12,19 +12,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CustomUserDetailsService implements UserDetailsService {
+public class AdminDetailsService implements UserDetailsService {
 
     private final AdminRepository adminRepository;
-    private final PlayerRepository playerRepository;
 
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        if(id.contains("@")){
-            Player player = playerRepository.findByPlayerEmail(id);
-            return new PlayerDetails(player);
-        } else {
             Admin admin = adminRepository.findByAdminId(id);
             return new AdminDetails(admin);
-        }
     }
 }

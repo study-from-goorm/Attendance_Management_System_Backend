@@ -12,11 +12,10 @@ import java.io.IOException;
 
 public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
 
-    public JwtAuthorizationFilter(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
+    public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
-        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
@@ -30,10 +29,13 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
         String token =  header.replace("Bearer ", "");
         String requestURI = request.getRequestURI();
 
-        if(jwtTokenProvider.validateToken(token)) {
+        String validation = jwtTokenProvider.validateToken(token);
+
+        if(validation.equals("success")) {
             SecurityContextHolder.getContext().setAuthentication(jwtTokenProvider.getAuthentication(token));
         } else {
             System.out.println("유효한 JWT토큰이 없습니다. uri:"+requestURI);
+            response.addHeader("validation", validation);
         }
         chain.doFilter(request, response);
     }
