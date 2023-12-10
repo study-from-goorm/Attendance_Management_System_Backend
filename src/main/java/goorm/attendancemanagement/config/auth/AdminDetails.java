@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Getter
 public class AdminDetails implements UserDetails {
 
     private final Admin admin;
@@ -21,7 +20,7 @@ public class AdminDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(admin::getRole);
+        authorities.add((GrantedAuthority) () -> admin.getRole().toString());
         return authorities;
     }
 

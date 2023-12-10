@@ -31,14 +31,15 @@ public class Player {
     @JsonIgnore
     private Course course;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role;
+    private Role role;
 
     public Player() {
 
     }
 
-    public Player(String email, String pw, String name, Course course, String role) {
+    public Player(String email, String pw, String name, Course course, Role role) {
         this.playerEmail = email;
         this.playerPassword = pw;
         this.playerName = name;

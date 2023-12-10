@@ -7,12 +7,9 @@ import goorm.attendancemanagement.domain.dao.Player;
 //import goorm.attendancemanagement.domain.dao.RefreshToken;
 //import goorm.attendancemanagement.domain.dto.ReissueRequestDto;
 //import goorm.attendancemanagement.repository.RefreshTokenRepository;
+import goorm.attendancemanagement.domain.dao.Role;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -69,11 +66,11 @@ public class JwtTokenProvider {
         String authority = claims.get("roles").toString();
 
         if (authority.equals("ROLE_ADMIN")) {
-            Admin admin = new Admin(claims.getSubject(), "", authorities.toString());
+            Admin admin = new Admin(claims.getSubject(), "", Role.ROLE_ADMIN);
             AdminDetails adminDetails = new AdminDetails(admin);
             return new UsernamePasswordAuthenticationToken(adminDetails, "", authorities);
-        } else if (authority.equals("ROLE_USER")){
-            Player player = new Player(claims.getSubject(), "", "", null, authorities.toString());
+        } else if (authority.equals("ROLE_PLAYER")){
+            Player player = new Player(claims.getSubject(), "", "", null, Role.ROLE_PLAYER);
             PlayerDetails playerDetails = new PlayerDetails(player);
             return new UsernamePasswordAuthenticationToken(playerDetails, "", authorities);
         } else {

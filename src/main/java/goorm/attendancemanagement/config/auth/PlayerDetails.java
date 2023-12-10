@@ -16,12 +16,12 @@ public class PlayerDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(player::getRole);
+        authorities.add((GrantedAuthority) () -> player.getRole().toString());
         return authorities;
     }
 
     @Override
-    public String getPassword() throws NullPointerException{
+    public String getPassword(){
         return player.getPlayerPassword();
     }
 

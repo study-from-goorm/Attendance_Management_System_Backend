@@ -46,12 +46,12 @@ public class SecurityConfig {
                 .cors(configurer -> configurer.configurationSource(corsConfigurationSource()))
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .addFilterBefore(new JwtAuthenticationFilter(authenticationManager(adminDetailsService), "/login/admin"), UsernamePasswordAuthenticationFilter.class)
-                .addFilterBefore(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), "/login/player"), UsernamePasswordAuthenticationFilter.class)
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(adminDetailsService), "/login/admin"))
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), "/login/player"))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(adminDetailsService)))
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/player").authenticated()
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/player/**").authenticated()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
         return http.build();
