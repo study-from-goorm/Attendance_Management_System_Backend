@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), "/login/player"), UsernamePasswordAuthenticationFilter.class)
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(adminDetailsService)))
                 .authorizeHttpRequests(registry -> registry
-                        .requestMatchers("/user").authenticated()
+                        .requestMatchers("/player").authenticated()
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().permitAll()
                 );
