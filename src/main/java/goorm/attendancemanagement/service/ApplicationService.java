@@ -48,16 +48,17 @@ public class ApplicationService {
             throw new IllegalStateException("해당 날짜에 이미 요청하신 신청이 존재합니다.");
         }
 
-        Application application = new Application();
-        application.setApplicationDate(LocalDate.now());
-        application.setApplicationTargetDate(requestDto.getApplicationTargetDate());
-        application.setApplicationType(ApplicationType.valueOf(requestDto.getApplicationType()));
-        application.setApplicationStatus(ApplicationStatus.대기); // 초기 상태는 '대기'로 설정
-        application.setApplicationReason(requestDto.getApplicationReason());
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new EntityNotFoundException("Player not found with id: " + playerId));
 
-        // playerId를 기반으로 Player 엔티티를 찾아 연결
-        Optional<Player> player = playerRepository.findById(playerId);
-        player.ifPresent(application::setPlayer);
+        Application application = new Application(
+                player,
+                LocalDate.now(),
+                requestDto.getApplicationTargetDate(),
+                ApplicationType.valueOf(requestDto.getApplicationType()),
+                ApplicationStatus.대기,
+                requestDto.getApplicationReason()
+        );
 
         // 저장
         application = applicationRepository.save(application);
@@ -75,12 +76,12 @@ public class ApplicationService {
     public void cancelApplication(Application application) {
         switch (application.getApplicationStatus()) {
             case 대기:
-                application.setApplicationStatus(ApplicationStatus.취소);
+                application.updateApplicationStatus(ApplicationStatus.취소);
 //                notifyAdminForCancellation(application, "취소됨");
                 break;
 
             case 승인:
-                application.setApplicationStatus(ApplicationStatus.취소요청);
+                application.updateApplicationStatus(ApplicationStatus.취소요청);
 //                notifyAdminForCancellation(application, "취소 요청됨");
                 break;
 
@@ -123,7 +124,7 @@ public class ApplicationService {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new EntityNotFoundException("Application not found"));
 
-        application.setApplicationStatus(applicationStatus);
+        application.updateApplicationStatus(applicationStatus);
         applicationRepository.save(application);
     }
 
