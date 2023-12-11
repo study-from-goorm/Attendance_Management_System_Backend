@@ -3,23 +3,25 @@ package goorm.attendancemanagement.domain.dao;
 import jakarta.persistence.*;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
-@Table(name="courses")
+@Table(name = "Courses")
 public class Course {
 
     @Id @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "course_id")
     private int courseId;
 
-    @Column(name = "course_name")
     private String courseName;
 
-    public Course() {
+    @OneToMany(mappedBy = "course")
+    List<Player> players = new ArrayList<>();
 
-    }
+    public Course() {}
 
     public Course(String name) {
         this.courseName = name;

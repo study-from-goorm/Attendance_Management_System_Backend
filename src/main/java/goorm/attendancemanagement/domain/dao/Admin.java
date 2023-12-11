@@ -1,31 +1,24 @@
 package goorm.attendancemanagement.domain.dao;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 @Entity
 @Getter
-@Table(name="admins")
+@Table(name = "Admins")
 public class Admin {
 
     @Id
-    @Column(name = "admin_id")
     private String adminId;
 
-    @Column(name = "admin_password")
     private String adminPassword;
 
-    @Column(name = "role")
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
+    public Admin() {}
 
-    public Admin() {
-    }
-
-    public Admin(String adminId, String adminPassword, String role) {
+    public Admin(String adminId, String adminPassword, Role role) {
         this.adminId = adminId;
         this.adminPassword = adminPassword;
         this.role = role;
