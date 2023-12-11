@@ -3,21 +3,25 @@ package goorm.attendancemanagement.domain.dao;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import lombok.Setter;
+
 
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Applications")
 public class Application {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
     private int applicationId;
 
     @ManyToOne(fetch = LAZY)
@@ -54,5 +58,12 @@ public class Application {
 
     public void setApplicationStaus(ApplicationStatus applicationStatus) {
         this.applicationStatus = applicationStatus;
+    }
+
+    //==연관관계 메서드==//
+    public void setPlayer (Player player){
+        this.player = player;
+        player.getApplication().add(this);
+
     }
 }

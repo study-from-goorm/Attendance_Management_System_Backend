@@ -4,6 +4,10 @@ package goorm.attendancemanagement.domain.dao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,7 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
+@Getter @Setter
 @Table(name = "Players")
 public class Player {
 
@@ -30,6 +34,7 @@ public class Player {
     @JoinColumn(name = "course_id")
     @JsonIgnore
     private Course course;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
@@ -57,5 +62,7 @@ public class Player {
     @JsonIgnore
     @OneToMany(mappedBy = "player")
     private List<Application> application = new ArrayList<>();
+
+
 
 }

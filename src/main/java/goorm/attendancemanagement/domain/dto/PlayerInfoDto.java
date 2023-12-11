@@ -1,0 +1,16 @@
+package goorm.attendancemanagement.domain.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PlayerInfoDto {
+
+    private String courseName;
+    private String playerEmail;
+    private String playerName;
+
+}

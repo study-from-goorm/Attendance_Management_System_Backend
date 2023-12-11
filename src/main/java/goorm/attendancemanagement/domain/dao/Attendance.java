@@ -2,6 +2,7 @@ package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
@@ -9,8 +10,7 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
-@Table(name = "Attendances")
+@Getter @Setter
 public class Attendance {
 
     @Id
@@ -23,11 +23,16 @@ public class Attendance {
 
     private LocalDate attendanceDate;
 
-    @Embedded
-    private Session session;
-
-    @Enumerated(EnumType.STRING)
     private AttendanceStatus attendanceStatus;
 
     private String attendanceNote;
+
+    @Embedded
+    private Session session;
+
+    //==연관관계 메서드==//
+    public void setPlayer(Player player) {
+        this.player = player;
+        player.getAttendance().add(this);
+    }
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,4 +15,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 
     @Query("SELECT a FROM Application a JOIN FETCH a.player p JOIN FETCH p.course WHERE a.id = :id")
     Optional<Application> findByIdWithPlayerAndCourse(@Param("id") int id);
+
+    List<Application> findAllByPlayer_playerId(int playerId);
+    Optional<Application> findByPlayer_playerIdAndApplicationTargetDate(int playerId, LocalDate applicationTargetDate);
 }
