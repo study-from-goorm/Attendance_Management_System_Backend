@@ -5,32 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a5672c7-f68e-4da8-a8e8-06a0e39e8954" name="변경" comment="refactor">
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseConfirmDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceDetailsDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/PasswordChangeRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/PlayerAttendanceDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/PlayerInfoDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/ApplicatonRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Attendance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/AttendanceStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/AttendanceStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AdminRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/ApplicationRepository.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/PlayerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/PlayerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/EmailService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +85,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -172,7 +150,12 @@
       <workItem from="1701831474887" duration="3571000" />
       <workItem from="1701835657707" duration="6781000" />
       <workItem from="1701847245471" duration="18402000" />
-      <workItem from="1701914336523" duration="43813000" />
+      <workItem from="1701914336523" duration="44077000" />
+      <workItem from="1702048101191" duration="234000" />
+      <workItem from="1702125219080" duration="4270000" />
+      <workItem from="1702187613771" duration="1491000" />
+      <workItem from="1702190075824" duration="1819000" />
+      <workItem from="1702256517977" duration="303000" />
     </task>
     <task id="LOCAL-00001" summary="refactor">
       <option name="closed" value="true" />

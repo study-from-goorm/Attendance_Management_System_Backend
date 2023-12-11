@@ -36,7 +36,7 @@ public class AttendanceService {
         LocalDate endOfMonth = YearMonth.from(startOfMonth).atEndOfMonth();
 
         int totalDays = (int) IntStream.rangeClosed(1, endOfMonth.getDayOfMonth())
-                .mapToObj(day -> startOfMonth.withDayOfMonth(day))
+                .mapToObj(startOfMonth::withDayOfMonth)
                 .filter(date -> !isWeekend(date))
                 .count();
 
@@ -50,19 +50,12 @@ public class AttendanceService {
         Map<AttendanceStatus, Long> initialStatusCount = EnumSet.allOf(AttendanceStatus.class).stream()
                 .collect(Collectors.toMap(Function.identity(), status -> 0L));
 
-        // Compute actual status count from attendance list
-        Map<AttendanceStatus, Long> actualStatusCount = attendanceList.stream()
-                .collect(Collectors.groupingBy(PlayerAttendanceDto::getAttendanceStatus, Collectors.counting()));
+        initialStatusCount.putAll(statusCount);
 
-        // Combine the initial map with actual counts
-        initialStatusCount.putAll(actualStatusCount);
-
-        // Calculate notEntered count
         long totalPresentCount = initialStatusCount.values().stream().mapToLong(Long::longValue).sum();
         long notEnteredCount = totalDays - totalPresentCount;
         initialStatusCount.put(AttendanceStatus.notEntered, notEnteredCount);
 
-        // Create and return the summary DTO
         return new AttendanceSummaryDto(playerName, month, totalDays, initialStatusCount, attendanceDetails);
     }
 

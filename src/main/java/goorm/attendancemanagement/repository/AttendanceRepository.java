@@ -14,6 +14,4 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
             "FROM Attendance a JOIN a.player p WHERE p.playerId = :playerId AND MONTH(a.attendanceDate) = :month")
     List<PlayerAttendanceDto> findAttendanceInfoByPlayerIdAndMonth(@Param("playerId") int playerId, @Param("month") int month);
 
-
-
 }
