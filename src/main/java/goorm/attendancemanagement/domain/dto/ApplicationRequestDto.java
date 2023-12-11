@@ -1,6 +1,5 @@
 package goorm.attendancemanagement.domain.dto;
 
-import goorm.attendancemanagement.domain.dao.ApplicationType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

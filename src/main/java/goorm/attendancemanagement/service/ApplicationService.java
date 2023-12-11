@@ -123,7 +123,7 @@ public class ApplicationService {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new EntityNotFoundException("Application not found"));
 
-        application.setApplicationStaus(applicationStatus);
+        application.setApplicationStatus(applicationStatus);
         applicationRepository.save(application);
     }
 

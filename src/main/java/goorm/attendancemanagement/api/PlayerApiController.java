@@ -26,7 +26,7 @@ public class PlayerApiController {
         return ResponseEntity.ok(summary);
     }
 
-    @PostMapping("/player/form/{playerId}")
+    @PostMapping("/player/applications/{playerId}")
     public ResponseEntity<ApplicationResponseDto> playerApplication
             (@PathVariable("playerId") int playerId, @RequestBody ApplicationRequestDto requestDto) {
         ApplicationResponseDto response = applicationService.createApplication(playerId, requestDto);
@@ -47,7 +47,7 @@ public class PlayerApiController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/player/forms/{playerId}")
+    @GetMapping("/player/applications/{playerId}")
     public ResponseEntity<List<ApplicationResponseConfirmDto>> playerApplicaitionList(
             @PathVariable("playerId") int playerId) {
         List<ApplicationResponseConfirmDto> applicationDtos = applicationService.getPlayerApplications(playerId);

@@ -1,7 +1,6 @@
 package goorm.attendancemanagement.domain.dto;
 
 import goorm.attendancemanagement.domain.dao.AttendanceStatus;
-import goorm.attendancemanagement.domain.dto.PlayerAttendanceDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

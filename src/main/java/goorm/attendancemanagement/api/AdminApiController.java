@@ -1,8 +1,6 @@
 package goorm.attendancemanagement.api;
 
 
-import goorm.attendancemanagement.domain.dao.Course;
-import goorm.attendancemanagement.domain.dao.Player;
 import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.service.ApplicationService;
 import goorm.attendancemanagement.service.CourseService;
@@ -29,7 +27,7 @@ public class AdminApiController {
     }
 
     @GetMapping("/{courseId}/players")
-    public ResponseEntity<List<GetPlayersByCourseDto>> getPlayers(@PathVariable int courseId) {
+    public ResponseEntity<List<GetPlayersByCourseDto>> getPlayers(@PathVariable("courseId") int courseId) {
         return ResponseEntity.ok(playerService.getPlayersByCourse(courseId));
     }
 
@@ -64,13 +62,13 @@ public class AdminApiController {
     }
 
     @GetMapping("/applications/{applicationId}")
-    public ResponseEntity<GetApplicationDto> getApplication(@PathVariable int applicationId) {
+    public ResponseEntity<GetApplicationDto> getApplication(@PathVariable("applicationId") int applicationId) {
         return ResponseEntity.ok(applicationService.getApplicationById(applicationId));
 
     }
 
     @PatchMapping("/applications/{applicationId}")
-    public ResponseEntity<?> updateApplicationStatus(@PathVariable int applicationId, @RequestBody UpdateApplicationStatusDto applicationStatus) {
+    public ResponseEntity<?> updateApplicationStatus(@PathVariable("applicationId") int applicationId, @RequestBody UpdateApplicationStatusDto applicationStatus) {
         applicationService.updateApplicationStatus(applicationId, applicationStatus.getApplicationStatus());
         return ResponseEntity.ok().build();
     }

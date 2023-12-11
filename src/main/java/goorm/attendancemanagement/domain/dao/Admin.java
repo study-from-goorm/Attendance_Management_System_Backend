@@ -2,12 +2,10 @@ package goorm.attendancemanagement.domain.dao;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
-
 
 @Entity
 @Table(name = "Admins")
-@Getter @Setter
+@Getter
 public class Admin {
 
     @Id
