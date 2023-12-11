@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import lombok.Setter;
-
 import java.time.LocalDate;
 
 
@@ -13,7 +11,7 @@ import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter @Setter
+@Getter
 @AllArgsConstructor
 @Table(name = "Applications")
 public class Application {
@@ -38,6 +36,10 @@ public class Application {
 
     private String applicationReason;
 
+    public Application() {
+
+    }
+
     public Application(
             Player player,
             LocalDate applicationDate,
@@ -54,14 +56,13 @@ public class Application {
         this.applicationReason = applicationReason;
     }
 
-    public Application() {
-
-    }
-
     //==연관관계 메서드==//
     public void setPlayer (Player player){
         this.player = player;
         player.getApplication().add(this);
 
+    }
+    public void updateApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 }
