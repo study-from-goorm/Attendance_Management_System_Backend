@@ -2,6 +2,7 @@ package goorm.attendancemanagement.service;
 
 import goorm.attendancemanagement.domain.dao.Course;
 import goorm.attendancemanagement.domain.dao.Player;
+import goorm.attendancemanagement.domain.dao.Role;
 import goorm.attendancemanagement.domain.dto.GetPlayersByCourseDto;
 import goorm.attendancemanagement.domain.dto.CreatePlayerDto;
 import goorm.attendancemanagement.repository.CourseRepository;
@@ -42,7 +43,7 @@ public class PlayerService {
         Course findCourse = courseRepository.findById(player.getCourseId())
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with ID: " + player.getCourseId()));
 
-        Player newPlayer = new Player(findCourse, player.getPlayerName(), player.getPlayerEmail(), player.getPlayerPassword());
+        Player newPlayer = new Player(player.getPlayerEmail(), player.getPlayerPassword(), player.getPlayerName(), findCourse, Role.ROLE_PLAYER);
         return playerRepository.save(newPlayer);
     }
 }

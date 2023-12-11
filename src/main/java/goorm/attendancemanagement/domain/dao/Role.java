@@ -1,5 +1,5 @@
 package goorm.attendancemanagement.domain.dao;
 
 public enum Role {
-    ADMIN, SUPPORTERS
+    ROLE_ADMIN, ROLE_PLAYER
 }

@@ -31,12 +31,20 @@ public class Player {
     @JsonIgnore
     private Course course;
 
-    public Player() {}
-    public Player(Course course,String playerName, String playerEmail, String playerPassword) {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
+    public Player() {
+
+    }
+
+    public Player(String email, String pw, String name, Course course, Role role) {
+        this.playerEmail = email;
+        this.playerPassword = pw;
+        this.playerName = name;
         this.course = course;
-        this.playerName = playerName;
-        this.playerEmail = playerEmail;
-        this.playerPassword = playerPassword;
+        this.role = role;
     }
 
     // 양방향 관계인 player와 (attendance, application)의 순환 참조 방지
