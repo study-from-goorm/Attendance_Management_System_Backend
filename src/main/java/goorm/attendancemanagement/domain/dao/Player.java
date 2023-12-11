@@ -36,6 +36,7 @@ public class Player {
     private Role role;
 
     public Player() {
+
     }
 
     public Player(String email, String pw, String name, Course course, Role role) {
