@@ -1,8 +1,6 @@
 package goorm.attendancemanagement.config.auth;
 
 import goorm.attendancemanagement.domain.dao.Admin;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

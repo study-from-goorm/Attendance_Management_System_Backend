@@ -4,53 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="0a5672c7-f68e-4da8-a8e8-06a0e39e8954" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtTokenProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/CreateCourseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/CreatePlayerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetApplicationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetApplicationsAllDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetCoursesDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetPlayersByCourseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/UpdateApplicationStatusDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AdminRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/ApplicationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/PlayerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="fix: Modify Application cont, dto">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/AdminDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtTokenProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Admin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Attendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Attendance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Course.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-=======
-    <list default="true" id="0a5672c7-f68e-4da8-a8e8-06a0e39e8954" name="변경" comment="refactor">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
->>>>>>> feature/players
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseConfirmDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseConfirmDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +48,12 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="attendance-management" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -82,34 +65,37 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+    &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;k-minsik&quot;
+    }
+    }</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b67b44c5-3627-4c55-baa4-0c3d76ccf9a3" />
+        <option name="url" value="https://github.com/k-minsik/Attendance_Management_System_Backend.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2Z7FfZABO9O9BulTY7p1JJ06Zep" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+    &quot;associatedIndex&quot;: 1
+    }</component>
+  <component name="ProjectId" id="2YLl2S5lcC1vYVvtrgVdddmsI3A" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RequestMappingsPanelOrder0": "0",
@@ -118,75 +104,54 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.AttendanceManagementApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main 병합 중",
-    "last_opened_file_path": "/Users/goorm/Documents/과제/Attendance_Management_System_Backend",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/kms_1/Desktop/goormThon/Attendance_Management_System_Backend",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
+    "settings.editor.selected.configurable": "project.propVCSSupport.Mappings",
     "vue.rearranger.settings.migration": "true"
-=======
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/players&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/goorm/Documents/Study/Attendance_Management_System_Backend/build.gradle&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
->>>>>>> feature/players
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "mysql"
+    ],
+    "RunConfigurationTargetLRU": [
+      "4ed5196f-9ee8-4c5b-9667-2c22cb92dad6/schema/\"goorm_attendance_management\""
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL 파생 언어 변경": [
+      "MySQL",
+      "SQL92"
     ]
   }
-<<<<<<< HEAD
 }]]></component>
-  <component name="RunManager">
-=======
-}</component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="goorm.attendancebook.repository" />
     </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="goorm.attendancemanagement.repository" />
-      <recent name="goorm.attendancemanagement.service" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="goorm.attendancebook.domain.dto" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.AttendanceManagementApplication">
-    <configuration name="EmailServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="attendance-management.test" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="goorm.attendancemanagement.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="goorm.attendancemanagement.service" />
-      <option name="MAIN_CLASS_NAME" value="goorm.attendancemanagement.service.EmailServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="attendance_management.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
+      <script-file value="$PROJECT_DIR$/src/main/resources/db/attendance_management.sql" />
+      <script-mode>FILE</script-mode>
+      <data-source id="4ed5196f-9ee8-4c5b-9667-2c22cb92dad6" namespace="schema/&quot;goorm_attendance_management&quot;" />
+      <method v="2" />
     </configuration>
->>>>>>> feature/players
     <configuration name="AttendanceManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="attendance-management.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="goorm.attendancemanagement.AttendanceManagementApplication" />
@@ -196,60 +161,249 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EmailServiceTest" />
+        <item itemvalue="데이터베이스 스크립트.attendance_management.sql" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-5f3ff201" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="디폴트 작업">
-      <changelist id="0a5672c7-f68e-4da8-a8e8-06a0e39e8954" name="변경" comment="" />
-      <created>1701765314642</created>
+      <changelist id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="" />
+      <created>1700312532596</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1701765314642</updated>
-      <workItem from="1701765315701" duration="4459000" />
-      <workItem from="1701825493725" duration="887000" />
-      <workItem from="1701826409797" duration="675000" />
-      <workItem from="1701827154385" duration="2589000" />
-      <workItem from="1701831327720" duration="66000" />
-      <workItem from="1701831411069" duration="22000" />
-      <workItem from="1701831440058" duration="30000" />
-      <workItem from="1701831474887" duration="3571000" />
-      <workItem from="1701835657707" duration="6781000" />
-      <workItem from="1701847245471" duration="18402000" />
-      <workItem from="1701914336523" duration="44077000" />
-      <workItem from="1702048101191" duration="234000" />
-      <workItem from="1702125219080" duration="4270000" />
-      <workItem from="1702187613771" duration="1491000" />
-      <workItem from="1702190075824" duration="1819000" />
-      <workItem from="1702256517977" duration="303000" />
+      <updated>1700312532596</updated>
+      <workItem from="1700312533633" duration="11556000" />
+      <workItem from="1700472606615" duration="45201000" />
+      <workItem from="1700570022705" duration="48957000" />
+      <workItem from="1700675430852" duration="172000" />
+      <workItem from="1700676805497" duration="472000" />
+      <workItem from="1700917522893" duration="13000" />
+      <workItem from="1701592314553" duration="7447000" />
+      <workItem from="1701656394110" duration="169000" />
+      <workItem from="1701656823128" duration="998000" />
+      <workItem from="1701667799187" duration="1756000" />
+      <workItem from="1701676254197" duration="6175000" />
+      <workItem from="1701754592849" duration="987000" />
+      <workItem from="1701755812125" duration="494000" />
+      <workItem from="1701756631805" duration="49204000" />
+      <workItem from="1701949804887" duration="32932000" />
+      <workItem from="1702282330407" duration="64000" />
+      <workItem from="1702282425067" duration="2293000" />
     </task>
-    <task id="LOCAL-00001" summary="refactor">
+    <task id="LOCAL-00001" summary="feat: Find player data">
       <option name="closed" value="true" />
-      <created>1701827213533</created>
+      <created>1700470687726</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1701827213534</updated>
+      <updated>1700470687727</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: Update DAO">
+      <option name="closed" value="true" />
+      <created>1700536318200</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700536318200</updated>
+    </task>
+    <task id="LOCAL-00003" summary="feat: Test GET,POST api">
+      <option name="closed" value="true" />
+      <created>1700536383149</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1700536383149</updated>
+    </task>
+    <task id="LOCAL-00004" summary="refactor: Refactor attendance project">
+      <option name="closed" value="true" />
+      <created>1700549081353</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1700549081353</updated>
+    </task>
+    <task id="LOCAL-00005" summary="docs: Update .gitignore">
+      <option name="closed" value="true" />
+      <created>1700550282446</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1700550282447</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fix: Database attendance table">
+      <option name="closed" value="true" />
+      <created>1700550328450</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1700550328450</updated>
+    </task>
+    <task id="LOCAL-00007" summary="feat: Add login feature for admin and player">
+      <option name="closed" value="true" />
+      <created>1700585783881</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1700585783881</updated>
+    </task>
+    <task id="LOCAL-00008" summary="feat: Add login feature for admin and player">
+      <option name="closed" value="true" />
+      <created>1700585932887</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1700585932887</updated>
+    </task>
+    <task id="LOCAL-00009" summary="feat: Add JWT token, password hash func">
+      <option name="closed" value="true" />
+      <created>1700586006488</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1700586006488</updated>
+    </task>
+    <task id="LOCAL-00010" summary="feat: Update project ver">
+      <option name="closed" value="true" />
+      <created>1700586049856</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1700586049856</updated>
+    </task>
+    <task id="LOCAL-00011" summary="feat: Add auto create daily attendances records">
+      <option name="closed" value="true" />
+      <created>1700586096301</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1700586096301</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: Add creat new player record func">
+      <option name="closed" value="true" />
+      <created>1700586172314</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1700586172314</updated>
+    </task>
+    <task id="LOCAL-00013" summary="refactor: Move dir">
+      <option name="closed" value="true" />
+      <created>1700675458154</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1700675458154</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: Modify login service">
+      <option name="closed" value="true" />
+      <created>1700675596332</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1700675596332</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor: Init project">
+      <option name="closed" value="true" />
+      <created>1701763487357</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1701763487357</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactor: Init project">
+      <option name="closed" value="true" />
+      <created>1701764390799</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1701764390799</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: Init project">
+      <option name="closed" value="true" />
+      <created>1701877064245</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1701877064245</updated>
+    </task>
+    <task id="LOCAL-00018" summary="feat: Add Course&amp;player get&amp;add features">
+      <option name="closed" value="true" />
+      <created>1701958704614</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1701958704614</updated>
+    </task>
+    <task id="LOCAL-00019" summary="feat: Add Application get&amp;update features">
+      <option name="closed" value="true" />
+      <created>1701958724333</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1701958724333</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix: Modify Application Dto">
+      <option name="closed" value="true" />
+      <created>1702002760963</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1702002760963</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix: Modify Application cont, dto">
+      <option name="closed" value="true" />
+      <created>1702104218225</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1702104218225</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="feat: Find player data" />
+    <MESSAGE value="feat: Update DAO" />
+    <MESSAGE value="feat: Test GET,POST api" />
+    <MESSAGE value="refactor: Refactor attendance project" />
+    <MESSAGE value="docs: Update .gitignore" />
+    <MESSAGE value="Fix: Database attendance table" />
+    <MESSAGE value="feat: Add login feature for admin and player" />
+    <MESSAGE value="feat: Add JWT token, password hash func" />
+    <MESSAGE value="feat: Update project ver" />
+    <MESSAGE value="feat: Add auto create daily attendances records" />
+    <MESSAGE value="feat: Add creat new player record func" />
+    <MESSAGE value="refactor: Move dir" />
+    <MESSAGE value="fix: Modify login service" />
+    <MESSAGE value="refactor: Init project" />
+    <MESSAGE value="feat: Add Course&amp;player get&amp;add features" />
+    <MESSAGE value="feat: Add Application get&amp;update features" />
+    <MESSAGE value="fix: Modify Application Dto" />
+    <MESSAGE value="fix: Modify Application cont, dto" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: Modify Application cont, dto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <breakpoint enabled="true" type="java-exception">
-          <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
-          <option name="timeStamp" value="2" />
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt-api/0.11.5/8d2151f971d80e47ad2d3ba901ad38f72d0679f3/jjwt-api-0.11.5-sources.jar!/io/jsonwebtoken/io/Decoders.java</url>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

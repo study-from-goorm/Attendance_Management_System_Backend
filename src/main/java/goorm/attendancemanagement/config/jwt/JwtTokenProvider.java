@@ -33,21 +33,12 @@ public class JwtTokenProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        String accessToken =  Jwts.builder()
+        return Jwts.builder()
                 .subject(authentication.getName())         // JWT payload 에 저장되는 정보단위
                 .claim("roles", roles)              // 정보는 key / value 쌍으로 저장
                 .expiration(new Date(new Date().getTime() + JwtProperties.ACCESS_TOKEN_EXPIRATION_TIME))    // 토큰 유효시각 설정
                 .signWith(SECRET_KEY)    // 암호화 알고리즘과, secret 값
                 .compact();
-
-//        String refreshToken = Jwts.builder()
-//                .expiration(new Date(new Date().getTime() + JwtProperties.REFRESH_TOKEN_EXPIRATION_TIME))
-//                .signWith(SECRET_KEY)
-//                .compact();
-
-//        refreshTokenRepository.save(new RefreshToken(authentication.getName(), refreshToken));
-
-        return accessToken;
 
     }
 

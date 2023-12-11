@@ -174,12 +174,7 @@ public class InitDb {
         private Attendance createAttendance(
                 Player player, LocalDate attendanceDate, AttendanceStatus attendanceStatus, int one,
                 int two, int three, int four, int five, int six, int seven, int eight) {
-            Attendance attendance = new Attendance();
-            attendance.setPlayer(player);
-            attendance.setAttendanceDate(attendanceDate);
-            attendance.setAttendanceStatus(attendanceStatus);
-            attendance.setSession(new Session(one, two, three, four, five, six, seven, eight));
-            return attendance;
+            return new Attendance(player, attendanceDate, attendanceStatus, new Session(one, two, three, four, five, six, seven, eight));
         }
 
 
@@ -188,9 +183,7 @@ public class InitDb {
         }
 
         private Course createCourse(String name) {
-            Course course = new Course();
-            course.setCourseName(name);
-            return course;
+            return new Course(name);
         }
 
     }

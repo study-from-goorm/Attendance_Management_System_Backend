@@ -24,7 +24,7 @@ public class CourseService {
                 .collect(Collectors.toList());
     }
 
-    public Course createCourse(String courseName) {
+    public void createCourse(String courseName) {
         boolean exists = courseRepository.existsByCourseName(courseName);
 
         if (exists) {
@@ -32,7 +32,7 @@ public class CourseService {
         }
 
         Course course = new Course(courseName);
-        return courseRepository.save(course);
+        courseRepository.save(course);
     }
 }
 
