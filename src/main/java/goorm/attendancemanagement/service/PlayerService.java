@@ -32,6 +32,7 @@ public class PlayerService {
         return course.getPlayers().stream()
                 .map(player -> new GetPlayersByCourseDto(
                         course.getCourseName(),
+                        player.getPlayerId(),
                         player.getPlayerName(),
                         player.getPlayerEmail()
                 ))

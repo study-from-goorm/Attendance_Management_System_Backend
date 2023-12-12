@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class GetPlayersByCourseDto {
     private String courseName;
+    private int playerId;
     private String playerName;
     private String playerEmail;
 }
