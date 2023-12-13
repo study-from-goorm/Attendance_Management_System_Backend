@@ -4,17 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Update attendance service version">
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSessionDto.java" afterDir="false" />
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="refactor: Add player id to GetPlayersByCourseDto">
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Holiday.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/UpdatePlayerInfoDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/CreateCourseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/CreateCourseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/CourseService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/attendance_management.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/attendance_management.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,11 +63,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
-    &quot;lastFilter&quot;: {
+  &quot;lastFilter&quot;: {
     &quot;state&quot;: &quot;OPEN&quot;,
     &quot;assignee&quot;: &quot;k-minsik&quot;
-    }
-    }</component>
+  }
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -79,7 +83,6 @@
     &quot;associatedIndex&quot;: 1
     }</component>
   <component name="ProjectId" id="2YLl2S5lcC1vYVvtrgVdddmsI3A" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -101,15 +104,18 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.Mappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;데이터베이스 스크립트.attendance_management.sql.executor&quot;: &quot;Run&quot;
   },
   &quot;keyToStringList&quot;: {
     &quot;DatabaseDriversLRU&quot;: [
       &quot;mysql&quot;
     ],
     &quot;RunConfigurationTargetLRU&quot;: [
-      &quot;4ed5196f-9ee8-4c5b-9667-2c22cb92dad6/schema/\&quot;goorm_attendance_management\&quot;&quot;
+      &quot;4ed5196f-9ee8-4c5b-9667-2c22cb92dad6/schema/\&quot;goorm_attendance_management\&quot;&quot;,
+      &quot;8138bb68-2d74-4fb3-86fe-06f77614e67c&quot;,
+      &quot;8138bb68-2d74-4fb3-86fe-06f77614e67c/schema/\&quot;goorm_attendance_management\&quot;&quot;
     ],
     &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL 파생 언어 변경&quot;: [
       &quot;MySQL&quot;,
@@ -119,6 +125,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="goorm.attendancemanagement.domain.dao" />
+      <recent name="goorm.attendancemanagement.api" />
       <recent name="goorm.attendancemanagement.domain.dto" />
       <recent name="goorm.attendancebook.repository" />
     </key>
@@ -126,11 +134,18 @@
       <recent name="goorm.attendancebook.domain.dto" />
     </key>
   </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
   <component name="RunManager" selected="Spring Boot.AttendanceManagementApplication">
     <configuration name="attendance_management.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <script-file value="$PROJECT_DIR$/src/main/resources/db/attendance_management.sql" />
       <script-mode>FILE</script-mode>
-      <data-source id="4ed5196f-9ee8-4c5b-9667-2c22cb92dad6" namespace="schema/&quot;goorm_attendance_management&quot;" />
+      <data-source id="8138bb68-2d74-4fb3-86fe-06f77614e67c" namespace="schema/&quot;goorm_attendance_management&quot;" />
       <method v="2" />
     </configuration>
     <configuration name="AttendanceManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
@@ -177,13 +192,10 @@
       <workItem from="1701756631805" duration="49204000" />
       <workItem from="1701949804887" duration="32932000" />
       <workItem from="1702282330407" duration="64000" />
-      <workItem from="1702282425067" duration="4107000" />
-      <workItem from="1702298763092" duration="6494000" />
-      <workItem from="1702343615184" duration="6013000" />
-      <workItem from="1702368628789" duration="1050000" />
-      <workItem from="1702369799753" duration="4138000" />
-      <workItem from="1702392729499" duration="661000" />
-      <workItem from="1702428912623" duration="4867000" />
+      <workItem from="1702282425067" duration="7027000" />
+      <workItem from="1702358647193" duration="18447000" />
+      <workItem from="1702431406682" duration="176000" />
+      <workItem from="1702432269207" duration="10735000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Find player data">
       <option name="closed" value="true" />
@@ -361,11 +373,50 @@
       <option name="project" value="LOCAL" />
       <updated>1702284852192</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="refactor: Modify create application form">
+      <option name="closed" value="true" />
+      <created>1702286651354</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1702286651354</updated>
+    </task>
+    <task id="LOCAL-00024" summary="refactor: Add player id to GetPlayersByCourseDto">
+      <option name="closed" value="true" />
+      <created>1702359047468</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1702359047468</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: Find player data" />
@@ -387,7 +438,9 @@
     <MESSAGE value="fix: Modify Application Dto" />
     <MESSAGE value="fix: Modify Application cont, dto" />
     <MESSAGE value="feat: Update attendance service version" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Update attendance service version" />
+    <MESSAGE value="refactor: Modify create application form" />
+    <MESSAGE value="refactor: Add player id to GetPlayersByCourseDto" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: Add player id to GetPlayersByCourseDto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

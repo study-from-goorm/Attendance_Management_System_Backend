@@ -60,7 +60,7 @@ public class PlayerApiController {
     }
 
     @GetMapping("/player/applications/{playerId}")
-    public ResponseEntity<List<ApplicationResponseConfirmDto>> playerApplicaitionList(
+    public ResponseEntity<List<ApplicationResponseConfirmDto>> playerApplicationList(
             @PathVariable("playerId") int playerId) {
         List<ApplicationResponseConfirmDto> applicationDtos = applicationService.getPlayerApplications(playerId);
         return ResponseEntity.ok(applicationDtos);

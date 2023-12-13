@@ -32,11 +32,11 @@ public class InitDb {
 
             em.persist(admin);
 
-            Course course1 = createCourse("풀스택 1회차");
+            Course course1 = createCourse("풀스택 1회차", LocalDate.of(2021, 1, 1), LocalDate.of(2021, 12, 1), 4);
             em.persist(course1);
-            Course course2 = createCourse("풀스택 2회차");
+            Course course2 = createCourse("풀스택 2회차", LocalDate.of(2022, 1, 1), LocalDate.of(2022, 12, 1), 5);
             em.persist(course2);
-            Course course3 = createCourse("풀스택 3회차");
+            Course course3 = createCourse("풀스택 3회차", LocalDate.of(2023, 10, 13), LocalDate.of(2024, 4, 22), 6);
             em.persist(course3);
 
             Player player1 = createPlayer("kim@goorm.io", "$2a$12$4QbpQ6YO8YX/d3O/KQcmYud34CqIg.NtPqRQQXFLyQXyKnJMPJNsu", "김김김", course1, Role.ROLE_PLAYER);
@@ -182,8 +182,8 @@ public class InitDb {
             return new Player(email, pw, name, course, role);
         }
 
-        private Course createCourse(String name) {
-            return new Course(name);
+        private Course createCourse(String name, LocalDate startDate, LocalDate finishDate, int unitPeriod) {
+            return new Course(name, startDate, finishDate, unitPeriod);
         }
 
     }

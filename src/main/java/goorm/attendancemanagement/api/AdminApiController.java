@@ -1,6 +1,7 @@
 package goorm.attendancemanagement.api;
 
 
+import goorm.attendancemanagement.domain.dto.UpdatePlayerInfoDto;
 import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.service.ApplicationService;
 import goorm.attendancemanagement.service.CourseService;
@@ -34,7 +35,7 @@ public class AdminApiController {
     @PostMapping("/courses")
     public ResponseEntity<?> createCourse(@RequestBody CreateCourseDto course) {
         try {
-            courseService.createCourse(course.getCourseName());
+            courseService.createCourse(course.getCourseName(), course.getStartDate(), course.getFinishDate(), course.getUnitPeriod());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity
@@ -55,6 +56,35 @@ public class AdminApiController {
         }
     }
 
+    @GetMapping("/course/{courseId}")
+    public ResponseEntity<CreateCourseDto> getCourse(@PathVariable("courseId") int courseId) {
+        return ResponseEntity.ok(courseService.getCourseById(courseId));
+    }
+
+    @PatchMapping("/course/{courseId}")
+    public ResponseEntity<?> updateCourse(@PathVariable("courseId") int courseId, @RequestBody CreateCourseDto afterCourse) {
+        courseService.updateCourse(courseId, afterCourse);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/course/{courseId}")
+    public ResponseEntity<?> deleteCourse(@PathVariable("courseId") int courseId) {
+        courseService.deleteCourseById(courseId);
+        return ResponseEntity.ok().build();
+    }
+
+    @PatchMapping("/player/{playerId}")
+    public ResponseEntity<?> updatePlayer(@PathVariable("playerId") int playerId, @RequestBody UpdatePlayerInfoDto afterPlayer) {
+        playerService.updatePlayerInfo(playerId, afterPlayer);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/player/{playerId}")
+    public ResponseEntity<?> deletePlayer(@PathVariable("playerId") int playerId) {
+        playerService.deletePlayerById(playerId);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/applications")
     public ResponseEntity<List<GetApplicationsAllDto>> getApplicationAll() {
         return ResponseEntity.ok(applicationService.getApplicationsAll());
@@ -64,12 +94,11 @@ public class AdminApiController {
     @GetMapping("/applications/{applicationId}")
     public ResponseEntity<GetApplicationDto> getApplication(@PathVariable("applicationId") int applicationId) {
         return ResponseEntity.ok(applicationService.getApplicationById(applicationId));
-
     }
 
     @PatchMapping("/applications/{applicationId}")
-    public ResponseEntity<?> updateApplicationStatus(@PathVariable("applicationId") int applicationId, @RequestBody UpdateApplicationStatusDto applicationStatus) {
-        applicationService.updateApplicationStatus(applicationId, applicationStatus.getApplicationStatus());
+    public ResponseEntity<?> updateApplicationStatus(@PathVariable("applicationId") int applicationId, @RequestBody UpdateApplicationStatusDto afterApplicationStatus) {
+        applicationService.updateApplicationStatus(applicationId, afterApplicationStatus.getApplicationStatus());
         return ResponseEntity.ok().build();
     }
 }
