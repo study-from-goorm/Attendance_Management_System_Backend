@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="refactor: Modify create application form">
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Update attendance service version">
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSessionDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetPlayersByCourseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/GetPlayersByCourseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/AttendanceSummaryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +79,7 @@
     &quot;associatedIndex&quot;: 1
     }</component>
   <component name="ProjectId" id="2YLl2S5lcC1vYVvtrgVdddmsI3A" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -111,18 +119,12 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="goorm.attendancemanagement.domain.dto" />
       <recent name="goorm.attendancebook.repository" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="goorm.attendancebook.domain.dto" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationTypes">
-      <set>
-        <option value="SpringBootApplicationConfigurationType" />
-      </set>
-    </option>
   </component>
   <component name="RunManager" selected="Spring Boot.AttendanceManagementApplication">
     <configuration name="attendance_management.sql" type="DatabaseScript" editBeforeRun="true" temporary="true" nameIsGenerated="true">
@@ -175,8 +177,13 @@
       <workItem from="1701756631805" duration="49204000" />
       <workItem from="1701949804887" duration="32932000" />
       <workItem from="1702282330407" duration="64000" />
-      <workItem from="1702282425067" duration="7027000" />
-      <workItem from="1702358647193" duration="379000" />
+      <workItem from="1702282425067" duration="4107000" />
+      <workItem from="1702298763092" duration="6494000" />
+      <workItem from="1702343615184" duration="6013000" />
+      <workItem from="1702368628789" duration="1050000" />
+      <workItem from="1702369799753" duration="4138000" />
+      <workItem from="1702392729499" duration="661000" />
+      <workItem from="1702428912623" duration="4867000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Find player data">
       <option name="closed" value="true" />
@@ -354,42 +361,11 @@
       <option name="project" value="LOCAL" />
       <updated>1702284852192</updated>
     </task>
-    <task id="LOCAL-00023" summary="refactor: Modify create application form">
-      <option name="closed" value="true" />
-      <created>1702286651354</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1702286651354</updated>
-    </task>
-    <option name="localTasksCounter" value="24" />
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="main" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: Find player data" />
@@ -411,8 +387,7 @@
     <MESSAGE value="fix: Modify Application Dto" />
     <MESSAGE value="fix: Modify Application cont, dto" />
     <MESSAGE value="feat: Update attendance service version" />
-    <MESSAGE value="refactor: Modify create application form" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: Modify create application form" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Update attendance service version" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

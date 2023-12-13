@@ -18,12 +18,24 @@ public class PlayerApiController {
     private final AttendanceService attendanceService;
     private final PlayerService playerService;
 
-    @GetMapping("/player/{playerId}/{month}")
+    @GetMapping("/player/{playerId}/{year}/{month}")
     public ResponseEntity<AttendanceSummaryDto> playerAttendance(
             @PathVariable("playerId") int playerId,
+            @PathVariable("year") int year,
             @PathVariable("month") int month) {
-        AttendanceSummaryDto summary = attendanceService.getAttendanceSummary(playerId, month);
+        AttendanceSummaryDto summary = attendanceService.getAttendanceSummary(playerId, year, month);
         return ResponseEntity.ok(summary);
+    }
+
+    // 날짜를 클릭했을때 Day별 Session 나오게 하는 로직 추가
+    @GetMapping("/player/{playerId}/{year}/{month}/{day}")
+    public ResponseEntity<AttendanceSessionDto> playerSessionByDate(
+            @PathVariable("playerId") int playerId,
+            @PathVariable("year") int year,
+            @PathVariable("month") int month,
+            @PathVariable("day") int day) {
+        AttendanceSessionDto sessionSummary = attendanceService.getSessionSummary(playerId, year, month, day);
+        return ResponseEntity.ok(sessionSummary);
     }
 
     @PostMapping("/player/applications/{playerId}")

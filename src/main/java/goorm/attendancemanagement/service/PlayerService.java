@@ -60,7 +60,7 @@ public class PlayerService {
                         player.getCourse().getCourseName(),
                         player.getPlayerEmail(),
                         player.getPlayerName()))
-                .orElse(null);  // 플레이어가 없을 경우 null 반환
+                .orElseThrow(() -> new EntityNotFoundException("Can not found this player"));  // 플레이어가 없을 경우 null 반환
     }
     public void changePlayerPassword(int playerId, PasswordChangeRequestDto passwordChangeRequestDto) {
         Optional<Player> playerOptional = playerRepository.findById(playerId);
