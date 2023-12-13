@@ -7,6 +7,7 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static jakarta.persistence.CascadeType.REMOVE;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -49,14 +50,15 @@ public class Player {
     // player를 조회했을때 전체 출석일수와 전체 신청에 대한것이 나와야하므로
 
     @JsonIgnore
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = REMOVE)
     private List<Attendance> attendance = new ArrayList<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "player")
+    @OneToMany(mappedBy = "player", cascade = REMOVE)
     private List<Application> application = new ArrayList<>();
 
     public void changePassword(String newPassword) {
         this.playerPassword = newPassword;
     }
+
 }

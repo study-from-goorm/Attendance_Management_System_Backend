@@ -3,8 +3,7 @@ package goorm.attendancemanagement.service;
 import goorm.attendancemanagement.domain.dao.Course;
 import goorm.attendancemanagement.domain.dao.Player;
 import goorm.attendancemanagement.domain.dao.Role;
-import goorm.attendancemanagement.domain.dto.GetPlayersByCourseDto;
-import goorm.attendancemanagement.domain.dto.CreatePlayerDto;
+import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.repository.CourseRepository;
 import goorm.attendancemanagement.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,8 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import goorm.attendancemanagement.domain.dto.PasswordChangeRequestDto;
-import goorm.attendancemanagement.domain.dto.PlayerInfoDto;
 
 import java.util.Optional;
 
@@ -81,5 +78,19 @@ public class PlayerService {
             player.changePassword(passwordChangeRequestDto.getNewPassword());
             playerRepository.save(player);
         }
+    }
+
+    public void deletePlayerById(int playerId) {
+        playerRepository.deleteById(playerId);
+    }
+
+    public void updatePlayerInfo(int playerId, UpdatePlayerInfoDto newPlayerInfo) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new EntityNotFoundException("Application not found"));
+
+        player.changePassword(newPlayerInfo.getPlayerPassword());
+        playerRepository.save(player);
+
+
     }
 }
