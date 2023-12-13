@@ -13,6 +13,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class AttendanceSummaryDto {
     private String playerName;
+    private int year;
     private int month;
     private int totalDays;
     private Map<AttendanceStatus, Long> statusCount;
