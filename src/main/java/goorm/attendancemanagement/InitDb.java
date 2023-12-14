@@ -1,14 +1,10 @@
 package goorm.attendancemanagement;
 
 import goorm.attendancemanagement.domain.dao.*;
+import goorm.attendancemanagement.domain.dto.ApplicationRequestDto;
 import goorm.attendancemanagement.domain.dto.CreatePlayerDto;
-import goorm.attendancemanagement.repository.CourseRepository;
-import goorm.attendancemanagement.repository.PlayerRepository;
-import goorm.attendancemanagement.service.AdminService;
-import goorm.attendancemanagement.service.CourseService;
-import goorm.attendancemanagement.service.PlayerService;
+import goorm.attendancemanagement.service.*;
 import jakarta.annotation.PostConstruct;
-import jakarta.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,14 +27,22 @@ public class InitDb {
     @RequiredArgsConstructor
     static class InitService {
 
-        private final EntityManager em;
         private final AdminService adminService;
         private final CourseService courseService;
         private final PlayerService playerService;
-        private final PlayerRepository playerRepository;
+        private final ApplicationService applicationService;
+        private final HolidayService holidayService;
 
         public void dbInit() {
             adminService.createAdmin("goorm", "1234");
+
+            holidayService.createHoliday(LocalDate.of(2023, 11, 29), "테스트");
+            holidayService.createHoliday(LocalDate.of(2023, 11, 28), "테스트");
+            holidayService.createHoliday(LocalDate.of(2023, 12, 25), "테스트");
+            holidayService.createHoliday(LocalDate.of(2024, 2, 9), "설날");
+            holidayService.createHoliday(LocalDate.of(2024, 2, 12), "설날");
+            holidayService.createHoliday(LocalDate.of(2024, 3, 1), "삼일절");
+            holidayService.createHoliday(LocalDate.of(2024, 4, 10), "22대 국회의원 선거");
 
             courseService.createCourse("풀스택 1회차", LocalDate.of(2023, 11, 8), LocalDate.of(2024, 5, 1), 4);
             courseService.createCourse("풀스택 2회차", LocalDate.of(2023, 11, 27), LocalDate.of(2024, 5, 9), 5);
@@ -52,12 +56,14 @@ public class InitDb {
             playerService.createPlayer(new CreatePlayerDto(3, "강강강", "kand@goorm.io", "678901"));
             playerService.createPlayer(new CreatePlayerDto(3, "황황황", "hwang@goorm.io", "789012"));
 
-            Application application = new Application(playerRepository.findByPlayerEmail("kim@goorm.io"), LocalDate.now().minusDays(2), LocalDate.now(), ApplicationType.휴가, ApplicationStatus.대기, "쉬고싶어요");
-            em.persist(application);
-            Application application2 = new Application(playerRepository.findByPlayerEmail("lee@goorm.io"), LocalDate.now().minusDays(1), LocalDate.now(), ApplicationType.외출, ApplicationStatus.대기, "놀고올게");
-            em.persist(application2);
+            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.now().plusDays(2), "휴가", "놀고싶어요"));
+            applicationService.createApplication(4, new ApplicationRequestDto(LocalDate.now().plusDays(3), "공결", "아파요"));
+            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.of(2023, 11, 8), "외출", "면접보러가요"));
 
-//
+            applicationService.updateApplicationStatus(3, ApplicationStatus.승인);
+//            applicationService.updateApplicationStatus(3, ApplicationStatus.취소);
+
+
 //            Attendance attendance1 = createAttendance(
 //                    player1, LocalDate.of(2023, 11, 30), AttendanceStatus.partiallyPresent,
 //                   1,0, 0, 0, 1, 1, 1, 1);

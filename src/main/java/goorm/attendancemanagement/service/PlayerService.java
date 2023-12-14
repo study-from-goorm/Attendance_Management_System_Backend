@@ -4,6 +4,7 @@ import goorm.attendancemanagement.domain.dao.*;
 import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.repository.AttendanceRepository;
 import goorm.attendancemanagement.repository.CourseRepository;
+import goorm.attendancemanagement.repository.HolidayRepository;
 import goorm.attendancemanagement.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -28,6 +29,7 @@ public class PlayerService {
     private final AttendanceRepository attendanceRepository;
     private final AttendanceService attendanceService;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final HolidayRepository holidayRepository;
 
     public List<GetPlayersByCourseDto> getPlayersByCourse(Integer courseId) {
         Course course = courseRepository.findById(courseId)
@@ -64,8 +66,17 @@ public class PlayerService {
             if (isWeekend(date)) {
                 break;
             }
+
+            if (isHoliday(date)) {
+                continue;
+            }
+
             attendanceRepository.save(new Attendance(newPlayer, date, AttendanceStatus.notEntered, new Session()));
         }
+    }
+
+    private boolean isHoliday(LocalDate date) {
+        return holidayRepository.existsById(date);
     }
 
 
