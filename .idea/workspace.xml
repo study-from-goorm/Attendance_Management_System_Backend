@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add update/delete method to course/player">
-
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/PlayerAuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" afterDir="false" />
-
-    </list>
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add update/delete method to course/player" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,6 +137,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AttendanceManagementApplication" />
+      <item itemvalue="데이터베이스 스크립트.attendance_management.sql" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -187,7 +177,6 @@
       <workItem from="1702358647193" duration="18447000" />
       <workItem from="1702431406682" duration="176000" />
       <workItem from="1702432269207" duration="25931000" />
-
       <workItem from="1702519821980" duration="85000" />
       <workItem from="1702519917451" duration="111000" />
       <workItem from="1702520033268" duration="451000" />
