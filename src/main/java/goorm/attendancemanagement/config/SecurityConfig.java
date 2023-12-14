@@ -2,8 +2,12 @@ package goorm.attendancemanagement.config;
 
 import goorm.attendancemanagement.config.auth.AdminDetailsService;
 import goorm.attendancemanagement.config.auth.PlayerDetailsService;
-import goorm.attendancemanagement.config.jwt.JwtAuthenticationFilter;
-import goorm.attendancemanagement.config.jwt.JwtAuthorizationFilter;
+import goorm.attendancemanagement.config.filter.JwtAuthenticationFilter;
+import goorm.attendancemanagement.config.filter.JwtAuthorizationFilter;
+import goorm.attendancemanagement.config.filter.PlayerAuthorizationFilter;
+import goorm.attendancemanagement.config.jwt.JwtAccessDeniedHandler;
+import goorm.attendancemanagement.config.jwt.JwtAuthenticationEntryPoint;
+import goorm.attendancemanagement.repository.PlayerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +24,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -35,6 +40,7 @@ public class SecurityConfig {
 
     private final AdminDetailsService adminDetailsService;
     private final PlayerDetailsService playerDetailsService;
+    private final PlayerRepository playerRepository;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -52,11 +58,16 @@ public class SecurityConfig {
 
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(adminDetailsService), "/login/admin"))
                 .addFilter(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), "/login/player"))
-                .addFilter(new JwtAuthorizationFilter(authenticationManager(adminDetailsService)))
+                .addFilterBefore(new JwtAuthorizationFilter(authenticationManager(adminDetailsService)), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new PlayerAuthorizationFilter(authenticationManager(playerDetailsService), playerRepository), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(registry -> registry
-//                        .requestMatchers("/player/**").authenticated()
-//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/player/**").authenticated()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().permitAll()
+                )
+                .exceptionHandling(configurer -> configurer
+                        .accessDeniedHandler(new JwtAccessDeniedHandler())
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
                 );
         return http.build();
     }
