@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-233.11799.241">
-    <data-source name="goorm_attendance_management@localhost" uuid="8138bb68-2d74-4fb3-86fe-06f77614e67c">
-      <database-info product="MySQL" version="8.0.32" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.32" exact-driver-version="8.0">
+  <component name="dataSourceStorageLocal" created-in="IU-233.11799.300">
+    <data-source name="@localhost" uuid="1a620123-24f9-46e9-8f90-5697f223dd59">
+      <database-info product="MySQL" version="8.0.35" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.0.35" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
         <jdbc-catalog-is-schema>true</jdbc-catalog-is-schema>
       </database-info>
-      <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed" />
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="schema" qname="@" />
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="goorm_attendance_management" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>
