@@ -14,7 +14,7 @@ public class AdminService {
     private final BCryptPasswordEncoder passwordEncoder;
 
     public void createAdmin(String adminId, String adminPassword) {
-        Admin newAdmin = new Admin(adminId, passwordEncoder.encode(adminPassword), Role.ROLE_PLAYER);
+        Admin newAdmin = new Admin(adminId, passwordEncoder.encode(adminPassword), Role.ROLE_ADMIN);
         adminRepository.save(newAdmin);
     }
 }
