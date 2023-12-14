@@ -22,4 +22,11 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
     Optional<Attendance> findSessionInfoByPlayerIdAndDay(@Param("playerId") int playerId, @Param("year") int year, @Param("month") int month, @Param("day") int day);
 
     boolean existsByPlayerAndAttendanceDate(Player player, LocalDate date);
+
+    @Query("SELECT a, a.player.playerName, a.player.course.courseName FROM Attendance a" +
+            " JOIN FETCH a.player p WHERE a.player.course.courseId = :courseId AND a.attendanceDate = :date")
+    List<Attendance> findPlayerSessionFromCourseInfo(@Param("courseId") int courseId, @Param("date") LocalDate date);
+
+    Optional<Attendance> findAllByPlayerAndAttendanceDate(Player player, LocalDate date);
+
 }

@@ -44,4 +44,8 @@ public class Attendance {
         this.player = player;
         player.getAttendance().add(this);
     }
+    public void updateSessionAndStatus(Session session, AttendanceStatus status) {
+        this.session = session;
+        this.attendanceStatus = status;
+    }
 }
