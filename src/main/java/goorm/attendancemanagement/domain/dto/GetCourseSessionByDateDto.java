@@ -1,6 +1,6 @@
 package goorm.attendancemanagement.domain.dto;
 
-import goorm.attendancemanagement.domain.dao.Session;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +15,6 @@ public class GetCourseSessionByDateDto {
 
     private String courseName;
     private LocalDate date;
-
     private List<PlayerSessionsDto> playerSessions;
 
 }
