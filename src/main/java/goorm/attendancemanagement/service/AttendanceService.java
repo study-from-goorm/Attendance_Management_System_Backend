@@ -100,7 +100,7 @@ public class AttendanceService {
                 .orElseThrow(() -> new EntityNotFoundException("Can not found this player"));
 
         List<PlayerSessionsDto> playerSessions = session.stream()
-                .map(o -> new PlayerSessionsDto(o.getPlayer().getPlayerName(), o.getSession()))
+                .map(o -> new PlayerSessionsDto(o.getPlayer().getPlayerId(), o.getPlayer().getPlayerName(), o.getSession()))
                 .collect(Collectors.toList());
 
 
@@ -140,7 +140,7 @@ public class AttendanceService {
                         determindSession(sessionList));
                 attendance = attendanceRepository.save(attendance);
             }
-            PlayerSessionsDto playerSessionsDto = new PlayerSessionsDto(player.getPlayerName(), attendance.getSession());
+            PlayerSessionsDto playerSessionsDto = new PlayerSessionsDto(player.getPlayerId(), player.getPlayerName(), attendance.getSession());
             playerSessionsDtos.add(playerSessionsDto);
         }
 
