@@ -1,15 +1,18 @@
 package goorm.attendancemanagement.service;
 
-import goorm.attendancemanagement.domain.dao.Course;
-import goorm.attendancemanagement.domain.dao.Player;
-import goorm.attendancemanagement.domain.dao.Role;
+import goorm.attendancemanagement.domain.dao.*;
 import goorm.attendancemanagement.domain.dto.*;
+import goorm.attendancemanagement.repository.AttendanceRepository;
 import goorm.attendancemanagement.repository.CourseRepository;
 import goorm.attendancemanagement.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +25,10 @@ public class PlayerService {
 
     private final CourseRepository courseRepository;
     private final PlayerRepository playerRepository;
+    private final AttendanceRepository attendanceRepository;
+    private final AttendanceService attendanceService;
+    private final BCryptPasswordEncoder passwordEncoder;
+
     public List<GetPlayersByCourseDto> getPlayersByCourse(Integer courseId) {
         Course course = courseRepository.findById(courseId)
                 .orElseThrow(() -> new EntityNotFoundException("Course not found"));
@@ -36,6 +43,7 @@ public class PlayerService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional
     public void createPlayer(CreatePlayerDto player) {
         boolean exists = playerRepository.existsByPlayerEmail(player.getPlayerEmail());
 
@@ -46,8 +54,18 @@ public class PlayerService {
         Course findCourse = courseRepository.findById(player.getCourseId())
                 .orElseThrow(() -> new EntityNotFoundException("Course not found with ID: " + player.getCourseId()));
 
-        Player newPlayer = new Player(player.getPlayerEmail(), player.getPlayerPassword(), player.getPlayerName(), findCourse, Role.ROLE_PLAYER);
+        Player newPlayer = new Player(player.getPlayerEmail(), passwordEncoder.encode(player.getPlayerPassword()), player.getPlayerName(), findCourse, Role.ROLE_PLAYER);
         playerRepository.save(newPlayer);
+
+        LocalDate today = newPlayer.getCourse().getStartDate();
+
+        for (int i = 0; i < 5; i++) {
+            LocalDate date = today.plusDays(i);
+            if (isWeekend(date)) {
+                break;
+            }
+            attendanceRepository.save(new Attendance(newPlayer, date, AttendanceStatus.notEntered, new Session()));
+        }
     }
 
 
@@ -75,22 +93,26 @@ public class PlayerService {
             }
 
             // 비밀번호 업데이트
-            player.changePassword(passwordChangeRequestDto.getNewPassword());
+            player.changePassword(passwordEncoder.encode(passwordChangeRequestDto.getNewPassword()));
             playerRepository.save(player);
         }
+    }
+
+    public void updatePlayerInfo(int playerId, UpdatePlayerInfoDto newPlayerInfo) {
+        Player player = playerRepository.findById(playerId)
+                .orElseThrow(() -> new EntityNotFoundException("player not found"));
+
+        player.changePassword(passwordEncoder.encode(newPlayerInfo.getPlayerPassword()));
+        playerRepository.save(player);
     }
 
     public void deletePlayerById(int playerId) {
         playerRepository.deleteById(playerId);
     }
 
-    public void updatePlayerInfo(int playerId, UpdatePlayerInfoDto newPlayerInfo) {
-        Player player = playerRepository.findById(playerId)
-                .orElseThrow(() -> new EntityNotFoundException("Application not found"));
-
-        player.changePassword(newPlayerInfo.getPlayerPassword());
-        playerRepository.save(player);
-
-
+    public boolean isWeekend(LocalDate date) {
+        DayOfWeek day = date.getDayOfWeek();
+        return day == DayOfWeek.SATURDAY || day == DayOfWeek.SUNDAY;
     }
+
 }

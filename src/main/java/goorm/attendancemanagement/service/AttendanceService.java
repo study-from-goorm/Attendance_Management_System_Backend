@@ -2,14 +2,17 @@ package goorm.attendancemanagement.service;
 
 import goorm.attendancemanagement.domain.dao.Attendance;
 import goorm.attendancemanagement.domain.dao.AttendanceStatus;
+import goorm.attendancemanagement.domain.dao.Player;
 import goorm.attendancemanagement.domain.dao.Session;
 import goorm.attendancemanagement.domain.dto.AttendanceDetailsDto;
 import goorm.attendancemanagement.domain.dto.AttendanceSessionDto;
 import goorm.attendancemanagement.domain.dto.AttendanceSummaryDto;
 import goorm.attendancemanagement.domain.dto.PlayerAttendanceDto;
 import goorm.attendancemanagement.repository.AttendanceRepository;
+import goorm.attendancemanagement.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -25,6 +28,23 @@ import java.util.stream.IntStream;
 public class AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
+    private final PlayerRepository playerRepository;
+
+    @Scheduled(cron = "0 0 0 * * MON")
+    public void createWeeklyAttendanceRecords() {
+        List<Player> players = playerRepository.findAll();
+        LocalDate today = LocalDate.now();
+
+        for (int i = 0; i < 5; i++) {
+            LocalDate date = today.plusDays(i);
+
+            for (Player player : players) {
+                if (!attendanceRepository.existsByPlayerAndAttendanceDate(player, date)) {
+                    attendanceRepository.save(new Attendance(player, date, AttendanceStatus.notEntered, new Session()));
+                }
+            }
+        }
+    }
 
     public AttendanceSummaryDto getAttendanceSummary(int playerId, int year, int month) {
         List<PlayerAttendanceDto> attendanceList = attendanceRepository.findAttendanceInfoByPlayerIdAndMonth(playerId, year, month);

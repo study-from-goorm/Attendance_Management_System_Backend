@@ -24,6 +24,7 @@ public class Attendance {
 
     private LocalDate attendanceDate;
 
+    @Enumerated(EnumType.STRING)
     private AttendanceStatus attendanceStatus;
 
     private String attendanceNote;
