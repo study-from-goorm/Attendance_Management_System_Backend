@@ -17,7 +17,15 @@ public class Session {
     private int sessionSeven;
     private int sessionEight;
 
-    protected Session() {
+    public Session() {
+        this.sessionOne = 0;
+        this.sessionTwo = 0;
+        this.sessionThree = 0;
+        this.sessionFour = 0;
+        this.sessionFive = 0;
+        this.sessionSix = 0;
+        this.sessionSeven = 0;
+        this.sessionEight = 0;
     }
 
     public Session(int sessionOne, int sessionTwo, int sessionThree, int sessionFour, int sessionFive, int sessionSix, int sessionSeven, int sessionEight) {

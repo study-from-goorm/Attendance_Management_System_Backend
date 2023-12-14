@@ -1,11 +1,13 @@
 package goorm.attendancemanagement.repository;
 
 import goorm.attendancemanagement.domain.dao.Attendance;
+import goorm.attendancemanagement.domain.dao.Player;
 import goorm.attendancemanagement.domain.dto.PlayerAttendanceDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,4 +21,5 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
             " WHERE a.player.playerId = :playerId AND YEAR(a.attendanceDate) = :year AND MONTH(a.attendanceDate) = :month AND DAY(a.attendanceDate) = :day")
     Optional<Attendance> findSessionInfoByPlayerIdAndDay(@Param("playerId") int playerId, @Param("year") int year, @Param("month") int month, @Param("day") int day);
 
+    boolean existsByPlayerAndAttendanceDate(Player player, LocalDate date);
 }
