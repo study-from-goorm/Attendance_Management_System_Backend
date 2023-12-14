@@ -1,6 +1,8 @@
-package goorm.attendancemanagement.config.jwt;
+package goorm.attendancemanagement.config.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import goorm.attendancemanagement.config.auth.PlayerDetails;
+import goorm.attendancemanagement.config.jwt.JwtTokenProvider;
 import goorm.attendancemanagement.domain.dto.LoginRequestDto;
 import goorm.attendancemanagement.domain.dto.LoginResponseDto;
 import jakarta.servlet.FilterChain;
@@ -57,9 +59,15 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = jwtTokenProvider.createToken(authResult);
         String role = authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority).findAny().orElse(null);
+        int playerId = -1;
+        if(request.getRequestURI().endsWith("player")){
+            PlayerDetails playerDetails = (PlayerDetails) authResult.getPrincipal();
+            playerId = playerDetails.getPlayerId();
+        }
         LoginResponseDto loginResponseDto = new LoginResponseDto();
         loginResponseDto.setAccessToken("Bearer " + token);
         loginResponseDto.setRole(role);
+        loginResponseDto.setPlayerId(playerId);
 
         String result = om.writeValueAsString(loginResponseDto);
         response.getWriter().write(result);
