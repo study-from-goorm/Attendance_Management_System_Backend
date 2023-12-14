@@ -12,14 +12,15 @@ import static jakarta.persistence.GenerationType.*;
 @Table(name = "holidays")
 public class Holiday {
 
-    @Id @GeneratedValue(strategy = IDENTITY)
-    private int holidayId;
-
+    @Id
     private LocalDate date;
+
+    private String dateName;
 
     public Holiday() {}
 
-    public Holiday(LocalDate date) {
+    public Holiday(LocalDate date, String dateName) {
         this.date = date;
+        this.dateName = dateName;
     }
 }

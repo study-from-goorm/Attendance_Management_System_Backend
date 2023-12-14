@@ -5,17 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add update/delete method to course/player">
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/PlayerAuthorizationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/HolidayRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/HolidayService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthorizationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Holiday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Holiday.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,6 +146,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.AttendanceManagementApplication" />
+      <item itemvalue="데이터베이스 스크립트.attendance_management.sql" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -393,6 +394,31 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="upstream/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">

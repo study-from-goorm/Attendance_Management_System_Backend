@@ -6,6 +6,7 @@ import goorm.attendancemanagement.domain.dao.Player;
 import goorm.attendancemanagement.domain.dao.Session;
 import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.repository.AttendanceRepository;
+import goorm.attendancemanagement.repository.HolidayRepository;
 import goorm.attendancemanagement.repository.PlayerRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -27,6 +28,7 @@ public class AttendanceService {
 
     private final AttendanceRepository attendanceRepository;
     private final PlayerRepository playerRepository;
+    private final HolidayRepository holidayRepository;
 
     @Scheduled(cron = "0 0 0 * * MON")
     public void createWeeklyAttendanceRecords() {
@@ -36,12 +38,20 @@ public class AttendanceService {
         for (int i = 0; i < 5; i++) {
             LocalDate date = today.plusDays(i);
 
+            if (isHoliday(date)) {
+                continue;
+            }
+
             for (Player player : players) {
                 if (!attendanceRepository.existsByPlayerAndAttendanceDate(player, date)) {
                     attendanceRepository.save(new Attendance(player, date, AttendanceStatus.notEntered, new Session()));
                 }
             }
         }
+    }
+
+    private boolean isHoliday(LocalDate date) {
+        return holidayRepository.existsById(date);
     }
 
     public AttendanceSummaryDto getAttendanceSummary(int playerId, int year, int month) {
