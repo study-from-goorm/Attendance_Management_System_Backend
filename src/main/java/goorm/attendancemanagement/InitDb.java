@@ -58,7 +58,11 @@ public class InitDb {
 
             applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.now().plusDays(2), "휴가", "놀고싶어요"));
             applicationService.createApplication(4, new ApplicationRequestDto(LocalDate.now().plusDays(3), "공결", "아파요"));
-            applicationService.createApplication(6, new ApplicationRequestDto(LocalDate.now().plusDays(5), "외출", "면접보러가요"));
+            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.of(2023, 11, 8), "외출", "면접보러가요"));
+
+            applicationService.updateApplicationStatus(3, ApplicationStatus.승인);
+//            applicationService.updateApplicationStatus(3, ApplicationStatus.취소);
+
 
 //            Attendance attendance1 = createAttendance(
 //                    player1, LocalDate.of(2023, 11, 30), AttendanceStatus.partiallyPresent,

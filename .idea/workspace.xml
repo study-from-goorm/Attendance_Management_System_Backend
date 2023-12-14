@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add update/delete method to course/player">
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/HolidayRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/HolidayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add holiday entity &amp; Skip attendance holidays">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Holiday.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dao/Holiday.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AttendanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/PlayerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,7 +384,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702456698036</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="feat: Add holiday entity &amp; Skip attendance holidays">
+      <option name="closed" value="true" />
+      <created>1702534860265</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1702534860265</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +469,8 @@
     <MESSAGE value="refactor: Modify create application form" />
     <MESSAGE value="refactor: Add player id to GetPlayersByCourseDto" />
     <MESSAGE value="feat: Add update/delete method to course/player" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add update/delete method to course/player" />
+    <MESSAGE value="feat: Add holiday entity &amp; Skip attendance holidays" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add holiday entity &amp; Skip attendance holidays" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

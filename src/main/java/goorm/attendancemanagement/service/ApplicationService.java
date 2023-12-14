@@ -5,7 +5,9 @@ import goorm.attendancemanagement.domain.dao.ApplicationStatus;
 import goorm.attendancemanagement.domain.dto.GetApplicationDto;
 import goorm.attendancemanagement.domain.dto.GetApplicationsAllDto;
 import goorm.attendancemanagement.repository.ApplicationRepository;
+import goorm.attendancemanagement.repository.AttendanceRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import goorm.attendancemanagement.domain.dao.*;
@@ -27,6 +29,9 @@ public class ApplicationService {
 
     private final ApplicationRepository applicationRepository;
     private final PlayerRepository playerRepository;
+    private final AttendanceRepository attendanceRepository;
+    private final AttendanceService attendanceService;
+
 
     public List<GetApplicationsAllDto> getApplicationsAll() {
         return applicationRepository.findAllWithPlayerAndCourse().stream()
@@ -126,6 +131,50 @@ public class ApplicationService {
 
         application.updateApplicationStatus(applicationStatus);
         applicationRepository.save(application);
+
+        if (applicationStatus == ApplicationStatus.승인) {
+            Optional<Attendance> findAttendance = attendanceRepository.findByPlayerAndAttendanceDate(
+                    application.getPlayer(),
+                    application.getApplicationTargetDate()
+            );
+
+            AttendanceStatus attendanceStatus = AttendanceStatus.partiallyPresent;
+            Session session = new Session(6, 6, 6, 6, 6, 6, 6, 6);
+
+            if (application.getApplicationType() == ApplicationType.공결) {
+                attendanceStatus = AttendanceStatus.officiallyExcused;
+            } else if (application.getApplicationType() == ApplicationType.휴가) {
+                attendanceStatus = AttendanceStatus.onVacation;
+            } else if (application.getApplicationType() == ApplicationType.조퇴) {
+                session = new Session(1,1,1,1,0,0,0,0);
+            } else if (application.getApplicationType() == ApplicationType.외출) {
+                session = new Session(0,0,0,0,1,1,1,1);
+            }
+
+            if (findAttendance.isPresent()) {
+                Attendance attendance = findAttendance.get();
+                attendance.updateSessionAndStatus(session, attendanceStatus);
+                attendanceRepository.save(attendance);
+            } else {
+                attendanceRepository.save(new Attendance(
+                        application.getPlayer(),
+                        application.getApplicationTargetDate(),
+                        attendanceStatus,
+                        session
+                ));
+            }
+        } else if (applicationStatus == ApplicationStatus.취소) {
+            Optional<Attendance> findAttendance = attendanceRepository.findByPlayerAndAttendanceDate(
+                    application.getPlayer(),
+                    application.getApplicationTargetDate()
+            );
+
+            if (findAttendance.isPresent()) {
+                Attendance attendance = findAttendance.get();
+                attendance.updateSessionAndStatus(new Session(), AttendanceStatus.notEntered);
+                attendanceRepository.save(attendance);
+            }
+        }
     }
 
     private String formatDate(LocalDate localDate) {
