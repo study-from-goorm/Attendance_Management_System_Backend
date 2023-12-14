@@ -4,12 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add holiday entity &amp; Skip attendance holidays">
+    <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Add update/delete method to course/player">
+
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/PlayerAuthorizationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/repository/AttendanceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/auth/PlayerDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/jwt/JwtAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/JwtAuthorizationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/AdminService.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,10 +151,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Spring Boot.AttendanceManagementApplication" />
-      <item itemvalue="데이터베이스 스크립트.attendance_management.sql" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -183,6 +187,15 @@
       <workItem from="1702358647193" duration="18447000" />
       <workItem from="1702431406682" duration="176000" />
       <workItem from="1702432269207" duration="25931000" />
+
+      <workItem from="1702519821980" duration="85000" />
+      <workItem from="1702519917451" duration="111000" />
+      <workItem from="1702520033268" duration="451000" />
+      <workItem from="1702520502458" duration="57000" />
+      <workItem from="1702520641339" duration="187000" />
+      <workItem from="1702520872283" duration="152000" />
+      <workItem from="1702521038745" duration="14000" />
+      <workItem from="1702521323429" duration="8602000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Find player data">
       <option name="closed" value="true" />
@@ -384,13 +397,13 @@
       <option name="project" value="LOCAL" />
       <updated>1702456698036</updated>
     </task>
-    <task id="LOCAL-00026" summary="feat: Add holiday entity &amp; Skip attendance holidays">
+    <task id="LOCAL-00026" summary="feat: Add update/delete method to course/player">
       <option name="closed" value="true" />
-      <created>1702534860265</created>
+      <created>1702532073208</created>
       <option name="number" value="00026" />
       <option name="presentableId" value="LOCAL-00026" />
       <option name="project" value="LOCAL" />
-      <updated>1702534860265</updated>
+      <updated>1702532073208</updated>
     </task>
     <option name="localTasksCounter" value="27" />
     <servers />
@@ -399,31 +412,6 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="upstream/main" />
-                </option>
-              </RecentGroup>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/main" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -469,8 +457,7 @@
     <MESSAGE value="refactor: Modify create application form" />
     <MESSAGE value="refactor: Add player id to GetPlayersByCourseDto" />
     <MESSAGE value="feat: Add update/delete method to course/player" />
-    <MESSAGE value="feat: Add holiday entity &amp; Skip attendance holidays" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Add holiday entity &amp; Skip attendance holidays" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Add update/delete method to course/player" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
