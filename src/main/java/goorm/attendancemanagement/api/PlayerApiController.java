@@ -62,12 +62,13 @@ public class PlayerApiController {
         return ResponseEntity.ok().build();
     }
 
-    // 2023.12.15 파일업로드 기능추가
+    // 2023.12.15 파일업로드 기능추가, 선택된 세션(교시)를 list형태로 가져오는 기능 추가
 
     /**
      * 추가 구현할 기능
-     * 만약 신청한 날짜가 포함된 단위기간 내에 휴가가 있거나 || 총 훈련기간이 6개월 미만인 코스의 경우
+     * 총 훈련기간이 6개월 미만인 코스의 경우 || 6개월 이상인 경우는 총 휴가 카운트 6회 이하인 사람 (한 단위기간의 출석률이 80%이상으로 마무리 되어야 휴가1일 생성)
      * 휴가는 신청 불가 (Exception 발생)
+     * 이거는 코스 단위기간 활성화 이후 수정
      */
     @PostMapping("/player/{playerId}/applications")
     public ResponseEntity<ApplicationResponseDto> playerApplication

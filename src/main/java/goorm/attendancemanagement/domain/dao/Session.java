@@ -3,9 +3,10 @@ package goorm.attendancemanagement.domain.dao;
 import jakarta.persistence.Embeddable;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Embeddable
-@Getter
+@Getter @Setter
 public class Session {
 
     private int sessionOne;
