@@ -44,9 +44,9 @@ public class InitDb {
             holidayService.createHoliday(LocalDate.of(2024, 3, 1), "삼일절");
             holidayService.createHoliday(LocalDate.of(2024, 4, 10), "22대 국회의원 선거");
 
-            courseService.createCourse("풀스택 1회차", LocalDate.of(2023, 11, 8), LocalDate.of(2024, 5, 1), 4);
-            courseService.createCourse("풀스택 2회차", LocalDate.of(2023, 11, 27), LocalDate.of(2024, 5, 9), 5);
-            courseService.createCourse("풀스택 3회차", LocalDate.of(2023, 10, 13), LocalDate.of(2024, 4, 22), 6);
+            courseService.createCourse("풀스택 1회차", LocalDate.of(2023, 11, 8), LocalDate.of(2024, 5, 1));
+            courseService.createCourse("풀스택 2회차", LocalDate.of(2023, 11, 27), LocalDate.of(2024, 5, 9));
+            courseService.createCourse("풀스택 3회차", LocalDate.of(2023, 10, 13), LocalDate.of(2024, 4, 22));
 
             playerService.createPlayer(new CreatePlayerDto(1, "김김김", "kim@goorm.io", "123456"));
             playerService.createPlayer(new CreatePlayerDto(2, "이이이", "lee@goorm.io", "234567"));

@@ -7,7 +7,6 @@ import goorm.attendancemanagement.domain.dto.GetApplicationsAllDto;
 import goorm.attendancemanagement.repository.ApplicationRepository;
 import goorm.attendancemanagement.repository.AttendanceRepository;
 import jakarta.persistence.EntityNotFoundException;
-import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import goorm.attendancemanagement.domain.dao.*;

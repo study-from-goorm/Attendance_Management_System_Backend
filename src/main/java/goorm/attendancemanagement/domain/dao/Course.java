@@ -1,6 +1,5 @@
 package goorm.attendancemanagement.domain.dao;
 
-import goorm.attendancemanagement.domain.dto.CreateCourseDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -24,24 +23,25 @@ public class Course {
 
     private LocalDate finishDate;
 
-    private int unitPeriod;
+    @Embedded
+    private UnitPeriod unitPeriod;
 
     @OneToMany(mappedBy = "course")
     List<Player> players = new ArrayList<>();
 
     public Course() {}
 
-    public Course(String name, LocalDate startDate, LocalDate finishDate, int unitPeriod) {
+    public Course(String name, LocalDate startDate, LocalDate finishDate, UnitPeriod unitPeriod) {
         this.courseName = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.unitPeriod = unitPeriod;
     }
 
-    public void updateCourse(CreateCourseDto afterCourse) {
-        this.courseName = afterCourse.getCourseName();
-        this.startDate = afterCourse.getStartDate();
-        this.finishDate = afterCourse.getFinishDate();
-        this.unitPeriod = afterCourse.getUnitPeriod();
+    public void updateCourse(String name, LocalDate startDate, LocalDate finishDate, UnitPeriod unitPeriod) {
+        this.courseName = name;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.unitPeriod = unitPeriod;
     }
 }
