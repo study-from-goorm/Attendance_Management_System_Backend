@@ -8,6 +8,8 @@ import goorm.attendancemanagement.domain.dao.Player;
 //import goorm.attendancemanagement.domain.dto.ReissueRequestDto;
 //import goorm.attendancemanagement.repository.RefreshTokenRepository;
 import goorm.attendancemanagement.domain.dao.Role;
+import goorm.attendancemanagement.repository.AdminRepository;
+import goorm.attendancemanagement.repository.PlayerRepository;
 import io.jsonwebtoken.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +27,8 @@ import static goorm.attendancemanagement.config.jwt.JwtProperties.SECRET_KEY;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
+    private final AdminRepository adminRepository;
+    private final PlayerRepository playerRepository;
 //    private final RefreshTokenRepository refreshTokenRepository;
 
     // 토큰 생성
@@ -39,7 +43,6 @@ public class JwtTokenProvider {
                 .expiration(new Date(new Date().getTime() + JwtProperties.ACCESS_TOKEN_EXPIRATION_TIME))    // 토큰 유효시각 설정
                 .signWith(SECRET_KEY)    // 암호화 알고리즘과, secret 값
                 .compact();
-
     }
 
     // 인증 정보 조회
@@ -57,13 +60,13 @@ public class JwtTokenProvider {
         String authority = claims.get("roles").toString();
 
         if (authority.equals("ROLE_ADMIN")) {
-            Admin admin = new Admin(claims.getSubject(), "", Role.ROLE_ADMIN);
+            Admin admin = adminRepository.findByAdminId(claims.getSubject());
             AdminDetails adminDetails = new AdminDetails(admin);
-            return new UsernamePasswordAuthenticationToken(adminDetails, "", authorities);
+            return new UsernamePasswordAuthenticationToken(adminDetails, admin.getAdminPassword(), authorities);
         } else if (authority.equals("ROLE_PLAYER")){
-            Player player = new Player(claims.getSubject(), "", "", null, Role.ROLE_PLAYER);
+            Player player = playerRepository.findById(Integer.parseInt(claims.getSubject())).get();
             PlayerDetails playerDetails = new PlayerDetails(player);
-            return new UsernamePasswordAuthenticationToken(playerDetails, "", authorities);
+            return new UsernamePasswordAuthenticationToken(playerDetails, player.getPlayerPassword(), authorities);
         } else {
             return null;
         }
