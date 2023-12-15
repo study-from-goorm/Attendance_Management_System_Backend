@@ -39,7 +39,7 @@ public class AdminApiController {
     @PostMapping("/courses")
     public ResponseEntity<?> createCourse(@RequestBody CreateCourseDto course) {
         try {
-            courseService.createCourse(course.getCourseName(), course.getStartDate(), course.getFinishDate(), course.getUnitPeriod());
+            courseService.createCourse(course.getCourseName(), course.getStartDate(), course.getFinishDate());
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity
@@ -61,7 +61,7 @@ public class AdminApiController {
     }
 
     @GetMapping("/course/{courseId}")
-    public ResponseEntity<CreateCourseDto> getCourse(@PathVariable("courseId") int courseId) {
+    public ResponseEntity<getCourseResponseDto> getCourse(@PathVariable("courseId") int courseId) {
         return ResponseEntity.ok(courseService.getCourseById(courseId));
     }
 
