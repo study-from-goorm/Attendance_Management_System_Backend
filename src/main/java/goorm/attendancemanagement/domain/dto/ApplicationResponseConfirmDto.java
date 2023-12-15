@@ -11,6 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class ApplicationResponseConfirmDto {
 
+    private int applicationId;
     private String applicationDate;
     private LocalDate applicationTargetDate;
     private String applicationType;

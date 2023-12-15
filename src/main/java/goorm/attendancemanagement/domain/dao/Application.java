@@ -1,5 +1,6 @@
 package goorm.attendancemanagement.domain.dao;
 
+import goorm.attendancemanagement.upload.UploadFile;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,6 +37,9 @@ public class Application {
 
     private String applicationReason;
 
+    @Embedded
+    private UploadFile uploadFile;
+
     public Application() {
 
     }
@@ -46,7 +50,8 @@ public class Application {
             LocalDate applicationTargetDate,
             ApplicationType applicationType,
             ApplicationStatus applicationStatus,
-            String applicationReason) {
+            String applicationReason,
+            UploadFile uploadFile) {
 
         this.player = player;
         this.applicationDate = applicationDate;
@@ -54,8 +59,20 @@ public class Application {
         this.applicationType = applicationType;
         this.applicationStatus = applicationStatus;
         this.applicationReason = applicationReason;
+        this.uploadFile = uploadFile;
     }
 
+    // UploadFile 없이 생성하는 생성자 (오버로딩)
+    public Application(
+            Player player,
+            LocalDate applicationDate,
+            LocalDate applicationTargetDate,
+            ApplicationType applicationType,
+            ApplicationStatus applicationStatus,
+            String applicationReason) {
+
+        this(player, applicationDate, applicationTargetDate, applicationType, applicationStatus, applicationReason, null);
+    }
     //==연관관계 메서드==//
     public void setPlayer (Player player){
         this.player = player;

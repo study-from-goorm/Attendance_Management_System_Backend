@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="dataSourceStorageLocal" created-in="IU-233.11799.241">
-    <data-source name="@localhost" uuid="16377521-db3c-455e-9e7f-6a3e5b7424d7">
+  <component name="dataSourceStorageLocal" created-in="IU-233.11799.300">
+    <data-source name="@localhost" uuid="ccbe9a0b-a018-4f13-abe2-93965f261b82">
       <database-info product="MySQL" version="8.1.0" jdbc-version="4.2" driver-name="MySQL Connector/J" driver-version="mysql-connector-java-8.0.25 (Revision: 08be9e9b4cba6aa115f9b27b215887af40b159e0)" dbms="MYSQL" exact-version="8.1.0" exact-driver-version="8.0">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -17,6 +17,11 @@
           </node>
         </introspection-scope>
       </schema-mapping>
+    </data-source>
+    <data-source name="goorm_attendance_management@localhost" uuid="7e12cf3c-9354-4a15-9844-7ef3fcbe64d4">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <user-name>root</user-name>
+      <schema-mapping />
     </data-source>
   </component>
 </project>

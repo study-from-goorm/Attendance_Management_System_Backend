@@ -2,19 +2,18 @@ package goorm.attendancemanagement.service;
 
 import goorm.attendancemanagement.domain.dao.Application;
 import goorm.attendancemanagement.domain.dao.ApplicationStatus;
-import goorm.attendancemanagement.domain.dto.GetApplicationDto;
-import goorm.attendancemanagement.domain.dto.GetApplicationsAllDto;
+import goorm.attendancemanagement.domain.dto.*;
 import goorm.attendancemanagement.repository.ApplicationRepository;
 import goorm.attendancemanagement.repository.AttendanceRepository;
+import goorm.attendancemanagement.upload.FileStore;
+import goorm.attendancemanagement.upload.UploadFile;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import goorm.attendancemanagement.domain.dao.*;
-import goorm.attendancemanagement.domain.dto.ApplicationRequestDto;
-import goorm.attendancemanagement.domain.dto.ApplicationResponseConfirmDto;
-import goorm.attendancemanagement.domain.dto.ApplicationResponseDto;
 import goorm.attendancemanagement.repository.PlayerRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -29,7 +28,7 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final PlayerRepository playerRepository;
     private final AttendanceRepository attendanceRepository;
-    private final AttendanceService attendanceService;
+    private final FileStore fileStore;
 
 
     public List<GetApplicationsAllDto> getApplicationsAll() {
@@ -45,7 +44,7 @@ public class ApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public ApplicationResponseDto createApplication(int playerId, ApplicationRequestDto requestDto) {
+    public ApplicationResponseDto createApplication(int playerId, ApplicationRequestDto requestDto) throws IOException {
 
         Optional<Application> existingApplication = applicationRepository.findByPlayer_playerIdAndApplicationTargetDate(playerId, requestDto.getApplicationTargetDate());
         if (existingApplication.isPresent()) {
@@ -55,13 +54,20 @@ public class ApplicationService {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(() -> new EntityNotFoundException("Player not found with id: " + playerId));
 
+
+        UploadFile uploadFile = null;
+        if (requestDto.getFile() != null && !requestDto.getFile().isEmpty()) {
+            uploadFile = fileStore.storeFile(requestDto.getFile());
+        }
+
         Application application = new Application(
                 player,
                 LocalDate.now(),
                 requestDto.getApplicationTargetDate(),
                 ApplicationType.valueOf(requestDto.getApplicationType()),
                 ApplicationStatus.대기,
-                requestDto.getApplicationReason()
+                requestDto.getApplicationReason(),
+                uploadFile // 파일 정보 추가
         );
 
         // 저장
@@ -73,7 +79,9 @@ public class ApplicationService {
                 application.getApplicationTargetDate(),
                 application.getApplicationType().toString(),
                 application.getApplicationStatus().toString(),
-                application.getApplicationReason()
+                application.getApplicationReason(),
+                requestDto.getSessionName(),
+                uploadFile != null ? uploadFile.getStoreFileName() : null
         );
     }
 
@@ -101,6 +109,7 @@ public class ApplicationService {
         List<Application> applications = applicationRepository.findAllByPlayer_playerId(playerId);
         return applications.stream()
                 .map(app -> new ApplicationResponseConfirmDto(
+                        app.getApplicationId(),
                         formatDate(app.getApplicationDate()),
                         app.getApplicationTargetDate(),
                         app.getApplicationType().name(),
@@ -124,45 +133,39 @@ public class ApplicationService {
                 application.getApplicationStatus());
     }
 
-    public void updateApplicationStatus(int applicationId, ApplicationStatus applicationStatus) {
+    public void updateApplicationStatus(int applicationId, UpdateApplicationStatusDto applicationStatus) {
         Application application = applicationRepository.findById(applicationId)
                 .orElseThrow(() -> new EntityNotFoundException("Application not found"));
 
-        application.updateApplicationStatus(applicationStatus);
+        List<String> sessionName = applicationStatus.getSessionName();
+
+        application.updateApplicationStatus(applicationStatus.getApplicationStatus());
         applicationRepository.save(application);
 
-        if (applicationStatus == ApplicationStatus.승인) {
+        if (applicationStatus.getApplicationStatus() == ApplicationStatus.승인) {
             Optional<Attendance> findAttendance = attendanceRepository.findByPlayerAndAttendanceDate(
                     application.getPlayer(),
                     application.getApplicationTargetDate()
             );
+            Session session = new Session();
+            if (applicationStatus.getApplicationType() == ApplicationType.공결) {
+                session = convertSessionNamesToSession(sessionName, 6);
 
-            AttendanceStatus attendanceStatus = AttendanceStatus.partiallyPresent;
-            Session session = new Session(6, 6, 6, 6, 6, 6, 6, 6);
+            } else if (applicationStatus.getApplicationType() == ApplicationType.휴가) {
+                session = convertSessionNamesToSession(sessionName, 6);
 
-            if (application.getApplicationType() == ApplicationType.공결) {
-                attendanceStatus = AttendanceStatus.officiallyExcused;
-            } else if (application.getApplicationType() == ApplicationType.휴가) {
-                attendanceStatus = AttendanceStatus.onVacation;
-            } else if (application.getApplicationType() == ApplicationType.조퇴) {
-                session = new Session(1,1,1,1,0,0,0,0);
+            } else if (applicationStatus.getApplicationType() == ApplicationType.조퇴) {
+                session = convertSessionNamesToSession(sessionName, 3);
+
             } else if (application.getApplicationType() == ApplicationType.외출) {
-                session = new Session(0,0,0,0,1,1,1,1);
+                session = convertSessionNamesToSession(sessionName, 4);
             }
 
             if (findAttendance.isPresent()) {
-                Attendance attendance = findAttendance.get();
-                attendance.updateSessionAndStatus(session, attendanceStatus);
-                attendanceRepository.save(attendance);
+              throw new RuntimeException("이미 지난 날짜입니다.");
             } else {
-                attendanceRepository.save(new Attendance(
-                        application.getPlayer(),
-                        application.getApplicationTargetDate(),
-                        attendanceStatus,
-                        session
-                ));
             }
-        } else if (applicationStatus == ApplicationStatus.취소) {
+        } else if (applicationStatus.getApplicationStatus() == ApplicationStatus.거절) {
             Optional<Attendance> findAttendance = attendanceRepository.findByPlayerAndAttendanceDate(
                     application.getPlayer(),
                     application.getApplicationTargetDate()
@@ -174,6 +177,41 @@ public class ApplicationService {
                 attendanceRepository.save(attendance);
             }
         }
+    }
+
+    public Session convertSessionNamesToSession(List<String> sessionNames, int value) {
+        Session session = new Session(0,0,0,0,0,0,0,0);
+
+        for (String sessionName : sessionNames) {
+            switch (sessionName) {
+                case "sessionOne":
+                    session.setSessionOne(value);
+                    break;
+                case "sessionTwo":
+                    session.setSessionTwo(value);
+                    break;
+                case "sessionThree":
+                    session.setSessionThree(value);
+                    break;
+                case "sessionFour":
+                    session.setSessionFour(value);
+                    break;
+                case "sessionFive":
+                    session.setSessionFive(value);
+                    break;
+                case "sessionSix":
+                    session.setSessionSix(value);
+                    break;
+                case "sessionSeven":
+                    session.setSessionSeven(value);
+                    break;
+                case "sessionEight":
+                    session.setSessionEight(value);
+                    break;
+            }
+        }
+
+        return session;
     }
 
     private String formatDate(LocalDate localDate) {

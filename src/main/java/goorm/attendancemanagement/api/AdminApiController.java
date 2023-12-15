@@ -7,12 +7,22 @@ import goorm.attendancemanagement.service.ApplicationService;
 import goorm.attendancemanagement.service.AttendanceService;
 import goorm.attendancemanagement.service.CourseService;
 import goorm.attendancemanagement.service.PlayerService;
+import goorm.attendancemanagement.upload.FileStore;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriUtils;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -95,14 +105,55 @@ public class AdminApiController {
 
     }
 
+    /**
+     * 기존 dto에 application에 있는 파일 url 추가해야함
+     * 서비스 수정시 파일이 null이라면 dto에 위치한 파일url에 null 입력해야함
+     * 플레이이가 교시정보 입력하면 List<String>형태로 리스트 받아옴
+     */
     @GetMapping("/applications/{applicationId}")
     public ResponseEntity<GetApplicationDto> getApplication(@PathVariable("applicationId") int applicationId) {
         return ResponseEntity.ok(applicationService.getApplicationById(applicationId));
     }
 
+    /**
+     * 파일 다운로드기능 메소드 구현 player에서 복붙해옴 문제 없나 재확인 필요함
+     */
+//    @GetMapping("/applications/{applicationId}/{fileName}")
+//    public ResponseEntity<Resource> downloadFile(
+//            @PathVariable("applicationId") int applicationId,
+//            @PathVariable("fileName") String fileName,
+//            @Autowired FileStore fileStore) throws IOException {
+//
+//        String fullPath = fileStore.getFullPath(fileName);
+//        Resource resource = new UrlResource("file:" + fullPath);
+//
+//        if (!resource.exists() || !resource.isReadable()) {
+//            throw new FileNotFoundException("파일을 찾을 수 없습니다: " + fileName);
+//        }
+//
+//        String uploadFileName = StringUtils.getFilename(resource.getFilename());
+//        String encodedUploadFileName = UriUtils.encode(uploadFileName, StandardCharsets.UTF_8);
+//        String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
+//
+//        return ResponseEntity.ok()
+//                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+//                .body(resource);
+//    }
+
+    /**
+     * 추가할 사항 - 플레이어가 보낸 sessionList를 for문을 돌며 동일한 이름의 session을
+     * applicationType에 따라 할당
+     * for (Session session : sessionList)
+     * if (applicationType == 조퇴) session == 3;
+     * else if (applicationType == 외출) session == 4;
+     * if (applicationType == 휴가 || applicationType == 공결) session == 6
+     *
+     * 아.. 달력에서 출석 기준일(오늘 혹은 어제) 이외의 경우 조회 안되게 해야됨...
+     * 만약 오늘 12월 15일 이면 21일에 신청한 휴가나 공결, 조퇴 외출 같은 게 일부만 떠버리면 플레이어 입장에서 혼란스러울 수 있음...
+     */
     @PatchMapping("/applications/{applicationId}")
     public ResponseEntity<?> updateApplicationStatus(@PathVariable("applicationId") int applicationId, @RequestBody UpdateApplicationStatusDto afterApplicationStatus) {
-        applicationService.updateApplicationStatus(applicationId, afterApplicationStatus.getApplicationStatus());
+        applicationService.updateApplicationStatus(applicationId, afterApplicationStatus);
         return ResponseEntity.ok().build();
     }
 

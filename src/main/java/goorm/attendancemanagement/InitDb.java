@@ -3,13 +3,20 @@ package goorm.attendancemanagement;
 import goorm.attendancemanagement.domain.dao.*;
 import goorm.attendancemanagement.domain.dto.ApplicationRequestDto;
 import goorm.attendancemanagement.domain.dto.CreatePlayerDto;
+import goorm.attendancemanagement.domain.dto.UpdateApplicationStatusDto;
 import goorm.attendancemanagement.service.*;
+import goorm.attendancemanagement.upload.FileStore;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static goorm.attendancemanagement.domain.dao.ApplicationStatus.승인;
 
 @Component
 @RequiredArgsConstructor
@@ -18,7 +25,7 @@ public class InitDb {
     private final InitService initService;
 
     @PostConstruct
-    public void init() {
+    public void init() throws IOException {
         initService.dbInit();
     }
 
@@ -33,7 +40,7 @@ public class InitDb {
         private final ApplicationService applicationService;
         private final HolidayService holidayService;
 
-        public void dbInit() {
+        public void dbInit() throws IOException {
             adminService.createAdmin("goorm", "1234");
 
             holidayService.createHoliday(LocalDate.of(2023, 11, 29), "테스트");
@@ -56,11 +63,11 @@ public class InitDb {
             playerService.createPlayer(new CreatePlayerDto(3, "강강강", "kand@goorm.io", "678901"));
             playerService.createPlayer(new CreatePlayerDto(3, "황황황", "hwang@goorm.io", "789012"));
 
-            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.now().plusDays(2), "휴가", "놀고싶어요"));
-            applicationService.createApplication(4, new ApplicationRequestDto(LocalDate.now().plusDays(3), "공결", "아파요"));
-            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.of(2023, 11, 8), "외출", "면접보러가요"));
+            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.now().plusDays(2), "휴가", "놀고싶어요", Arrays.asList("sessionOne", "sessionTwo", "sessionThree"),null));
+            applicationService.createApplication(4, new ApplicationRequestDto(LocalDate.now().plusDays(3), "공결", "아파요", Arrays.asList("sessionOne", "sessionTwo", "sessionThree", "sessionFour", "sessionFive", "sessionSix", "sessionSeven", "sessionEight"), null));
+            applicationService.createApplication(1, new ApplicationRequestDto(LocalDate.of(2023, 11, 8), "외출", "면접보러가요", Arrays.asList("sessionTwo", "sessionThree"), null));
 
-            applicationService.updateApplicationStatus(3, ApplicationStatus.승인);
+            applicationService.updateApplicationStatus(3, new UpdateApplicationStatusDto(승인, Arrays.asList("sessionTwo", "sessionThree")));
 //            applicationService.updateApplicationStatus(3, ApplicationStatus.취소);
 
 
