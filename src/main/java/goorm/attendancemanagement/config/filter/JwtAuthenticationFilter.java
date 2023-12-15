@@ -9,6 +9,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,11 +23,12 @@ import java.io.IOException;
 @Slf4j
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
-    private final JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();
+    private final JwtTokenProvider jwtTokenProvider;
     private final ObjectMapper om = new ObjectMapper();
 
-    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, String url) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider, String url) {
         super(authenticationManager);
+        this.jwtTokenProvider = jwtTokenProvider;
         setFilterProcessesUrl(url);
     }
 
@@ -58,11 +60,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         String token = jwtTokenProvider.createToken(authResult);
-        String role = authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority).findAny().orElse(null);
-        int playerId = -1;
-        if(request.getRequestURI().endsWith("player")){
+        String role = authResult.getAuthorities().stream().map(GrantedAuthority::getAuthority).findAny().orElse("");
+        String playerId = "";
+        if(role.equals("ROLE_PLAYER")){
             PlayerDetails playerDetails = (PlayerDetails) authResult.getPrincipal();
-            playerId = playerDetails.getPlayerId();
+            playerId = playerDetails.getUsername();
         }
         LoginResponseDto loginResponseDto = new LoginResponseDto();
         loginResponseDto.setAccessToken("Bearer " + token);

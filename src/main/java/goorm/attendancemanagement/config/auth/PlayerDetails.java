@@ -13,10 +13,6 @@ public class PlayerDetails implements UserDetails {
 
     public PlayerDetails(Player player) { this.player = player; }
 
-    public int getPlayerId() {
-        return player.getPlayerId();
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
@@ -31,7 +27,7 @@ public class PlayerDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return player.getPlayerEmail();
+        return player.getPlayerId()+"";
     }
 
     @Override

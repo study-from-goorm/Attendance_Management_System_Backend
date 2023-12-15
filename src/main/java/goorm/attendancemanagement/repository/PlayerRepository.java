@@ -11,6 +11,7 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     boolean existsByPlayerEmail(String Email);
     Player findByPlayerEmail(String playerEmail);
+    Player findByPlayerId(int playerId);
 
     @Query("select p from Player p join fetch p.course where p.playerId = :id")
     List<Player> findByIdWithCourse(@Param("id") int id);
