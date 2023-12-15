@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61ddd33f-b58d-4cd7-bde4-64b14248deee" name="변경" comment="feat: Update attendance service version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/InitDb.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/AdminApiController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/api/PlayerApiController.java" afterDir="false" />
@@ -13,6 +14,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseConfirmDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/ApplicationResponseConfirmDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/UpdateApplicationStatusDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/domain/dto/UpdateApplicationStatusDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/service/ApplicationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/PlayerAuthorizationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/goorm/attendancemanagement/config/filter/PlayerAuthorizationFilter.java" afterDir="false" />
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,9 +197,12 @@
       <workItem from="1702520872283" duration="152000" />
       <workItem from="1702521038745" duration="14000" />
       <workItem from="1702521323429" duration="8602000" />
+
       <workItem from="1702546720162" duration="7163000" />
       <workItem from="1702611898175" duration="5775000" />
       <workItem from="1702625786975" duration="94000" />
+      <workItem from="1702546720162" duration="15199000" />
+
     </task>
     <task id="LOCAL-00001" summary="feat: Find player data">
       <option name="closed" value="true" />
