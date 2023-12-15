@@ -6,8 +6,9 @@ import goorm.attendancemanagement.domain.dto.GetApplicationDto;
 import goorm.attendancemanagement.domain.dto.GetApplicationsAllDto;
 import goorm.attendancemanagement.repository.ApplicationRepository;
 import goorm.attendancemanagement.repository.AttendanceRepository;
+import goorm.attendancemanagement.upload.FileStore;
+import goorm.attendancemanagement.upload.UploadFile;
 import jakarta.persistence.EntityNotFoundException;
-import jdk.jshell.spi.ExecutionControl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import goorm.attendancemanagement.domain.dao.*;
@@ -16,6 +17,7 @@ import goorm.attendancemanagement.domain.dto.ApplicationResponseConfirmDto;
 import goorm.attendancemanagement.domain.dto.ApplicationResponseDto;
 import goorm.attendancemanagement.repository.PlayerRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -30,7 +32,7 @@ public class ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final PlayerRepository playerRepository;
     private final AttendanceRepository attendanceRepository;
-    private final AttendanceService attendanceService;
+    private final FileStore fileStore;
 
 
     public List<GetApplicationsAllDto> getApplicationsAll() {
@@ -46,7 +48,7 @@ public class ApplicationService {
                 .collect(Collectors.toList());
     }
 
-    public ApplicationResponseDto createApplication(int playerId, ApplicationRequestDto requestDto) {
+    public ApplicationResponseDto createApplication(int playerId, ApplicationRequestDto requestDto) throws IOException {
 
         Optional<Application> existingApplication = applicationRepository.findByPlayer_playerIdAndApplicationTargetDate(playerId, requestDto.getApplicationTargetDate());
         if (existingApplication.isPresent()) {
@@ -56,13 +58,19 @@ public class ApplicationService {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(() -> new EntityNotFoundException("Player not found with id: " + playerId));
 
+        UploadFile uploadFile = null;
+        if (requestDto.getFile() != null && !requestDto.getFile().isEmpty()) {
+            uploadFile = fileStore.storeFile(requestDto.getFile());
+        }
+
         Application application = new Application(
                 player,
                 LocalDate.now(),
                 requestDto.getApplicationTargetDate(),
                 ApplicationType.valueOf(requestDto.getApplicationType()),
                 ApplicationStatus.대기,
-                requestDto.getApplicationReason()
+                requestDto.getApplicationReason(),
+                uploadFile // 파일 정보 추가
         );
 
         // 저장
@@ -74,7 +82,8 @@ public class ApplicationService {
                 application.getApplicationTargetDate(),
                 application.getApplicationType().toString(),
                 application.getApplicationStatus().toString(),
-                application.getApplicationReason()
+                application.getApplicationReason(),
+                uploadFile != null ? uploadFile.getStoreFileName() : null
         );
     }
 

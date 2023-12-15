@@ -3,6 +3,7 @@ package goorm.attendancemanagement.domain.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 
@@ -16,4 +17,5 @@ public class ApplicationResponseDto {
     private String applicationType;
     private String applicationStatus;
     private String applicationReason;
+    private String fileName;
 }
