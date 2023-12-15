@@ -63,6 +63,12 @@ public class PlayerApiController {
     }
 
     // 2023.12.15 파일업로드 기능추가
+
+    /**
+     * 추가 구현할 기능
+     * 만약 신청한 날짜가 포함된 단위기간 내에 휴가가 있거나 || 총 훈련기간이 6개월 미만인 코스의 경우
+     * 휴가는 신청 불가 (Exception 발생)
+     */
     @PostMapping("/player/{playerId}/applications")
     public ResponseEntity<ApplicationResponseDto> playerApplication
             (@PathVariable("playerId") int playerId, @RequestBody ApplicationRequestDto requestDto) throws IOException {

@@ -7,7 +7,9 @@ import goorm.attendancemanagement.config.filter.JwtAuthorizationFilter;
 import goorm.attendancemanagement.config.filter.PlayerAuthorizationFilter;
 import goorm.attendancemanagement.config.jwt.JwtAccessDeniedHandler;
 import goorm.attendancemanagement.config.jwt.JwtAuthenticationEntryPoint;
+import goorm.attendancemanagement.config.jwt.JwtTokenProvider;
 import goorm.attendancemanagement.repository.PlayerRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authorization.AuthorizationManager;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -40,7 +43,7 @@ public class SecurityConfig {
 
     private final AdminDetailsService adminDetailsService;
     private final PlayerDetailsService playerDetailsService;
-    private final PlayerRepository playerRepository;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
@@ -56,10 +59,10 @@ public class SecurityConfig {
                 .cors(configurer -> configurer.configurationSource(corsConfigurationSource()))
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(adminDetailsService), "/login/admin"))
-                .addFilter(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), "/login/player"))
-                .addFilterBefore(new JwtAuthorizationFilter(authenticationManager(adminDetailsService)), UsernamePasswordAuthenticationFilter.class)
-                .addFilterAfter(new PlayerAuthorizationFilter(authenticationManager(playerDetailsService), playerRepository), UsernamePasswordAuthenticationFilter.class)
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(adminDetailsService), jwtTokenProvider, "/login/admin"))
+                .addFilter(new JwtAuthenticationFilter(authenticationManager(playerDetailsService), jwtTokenProvider, "/login/player"))
+                .addFilterBefore(new JwtAuthorizationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new PlayerAuthorizationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(registry -> registry
 //                        .requestMatchers("/player/**").authenticated()
 //                        .requestMatchers("/admin/**").hasRole("ADMIN")

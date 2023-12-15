@@ -108,6 +108,7 @@ public class AdminApiController {
     /**
      * 기존 dto에 application에 있는 파일 url 추가해야함
      * 서비스 수정시 파일이 null이라면 dto에 위치한 파일url에 null 입력해야함
+     * 플레이이가 교시정보 입력하면 List<String>형태로 리스트 받아옴
      */
     @GetMapping("/applications/{applicationId}")
     public ResponseEntity<GetApplicationDto> getApplication(@PathVariable("applicationId") int applicationId) {
@@ -139,6 +140,17 @@ public class AdminApiController {
 //                .body(resource);
 //    }
 
+    /**
+     * 추가할 사항 - 플레이어가 보낸 sessionList를 for문을 돌며 동일한 이름의 session을
+     * applicationType에 따라 할당
+     * for (Session session : sessionList)
+     * if (applicationType == 조퇴) session += 3;
+     * else if (applicationType == 외출) session += 4;
+     * if (applicationType == 휴가 || applicationType == 공결) session += 6
+     *
+     * 아.. 달력에서 출석 기준일(오늘 혹은 어제) 이외의 경우 조회 안되게 해야됨...
+     * 만약 오늘 12월 15일 이면 21일에 신청한 휴가나 공결, 조퇴 외출 같은 게 일부만 떠버리면 플레이어 입장에서 혼란스러울 수 있음...
+     */
     @PatchMapping("/applications/{applicationId}")
     public ResponseEntity<?> updateApplicationStatus(@PathVariable("applicationId") int applicationId, @RequestBody UpdateApplicationStatusDto afterApplicationStatus) {
         applicationService.updateApplicationStatus(applicationId, afterApplicationStatus.getApplicationStatus());

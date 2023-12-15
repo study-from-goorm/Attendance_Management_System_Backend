@@ -58,6 +58,7 @@ public class ApplicationService {
         Player player = playerRepository.findById(playerId)
                 .orElseThrow(() -> new EntityNotFoundException("Player not found with id: " + playerId));
 
+
         UploadFile uploadFile = null;
         if (requestDto.getFile() != null && !requestDto.getFile().isEmpty()) {
             uploadFile = fileStore.storeFile(requestDto.getFile());
@@ -83,6 +84,7 @@ public class ApplicationService {
                 application.getApplicationType().toString(),
                 application.getApplicationStatus().toString(),
                 application.getApplicationReason(),
+                requestDto.getSessionName(),
                 uploadFile != null ? uploadFile.getStoreFileName() : null
         );
     }
