@@ -44,11 +44,10 @@ public class PlayerAuthorizationFilter extends OncePerRequestFilter {
 
         if (playerId != requestPlayerId){
             log.info("권한이 없습니다. 현재 playerId={}, 조회 playerId={}", requestPlayerId, playerId);
-
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken(playerDetails, "", new ArrayList<>()));
+            authentication.setAuthenticated(false);
         }
 
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);
     }
 }
